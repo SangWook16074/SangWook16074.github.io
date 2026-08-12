@@ -41,9 +41,22 @@
     nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 62px; }
     .brand { display: flex; align-items: center; gap: 9px; font-weight: 800; letter-spacing: -0.02em; }
     .brand svg { width: 22px; height: 22px; }
+    .nav-right { display: flex; align-items: center; gap: 22px; }
     .nav-links { display: flex; gap: 26px; font-size: 0.92rem; font-weight: 500; color: var(--gray); }
     .nav-links a:hover { color: var(--flutter); }
     @media (max-width: 560px) { .nav-links { display: none; } }
+
+    /* ---------- Language toggle ---------- */
+    .lang-toggle {
+      font-family: inherit; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.82rem; font-weight: 600; color: var(--flutter-dark);
+      background: rgba(2,125,253,0.08); border: 1px solid rgba(2,125,253,0.18);
+      padding: 6px 13px; border-radius: 999px;
+      transition: transform .15s ease, border-color .2s ease, background .2s ease;
+    }
+    .lang-toggle:hover { transform: translateY(-1px); border-color: var(--flutter); background: rgba(2,125,253,0.12); }
+    .lang-toggle svg { width: 14px; height: 14px; }
 
     /* ---------- Hero ---------- */
     header { padding: 92px 0 60px; }
@@ -77,6 +90,7 @@
 
     /* ---------- Work ---------- */
     .job { display: grid; grid-template-columns: 130px 1fr; gap: 24px; }
+    .job + .job { margin-top: 30px; padding-top: 30px; border-top: 1px solid var(--line); }
     @media (max-width: 560px) { .job { grid-template-columns: 1fr; gap: 8px; } }
     .job .when { font-size: 0.86rem; color: var(--gray); padding-top: 4px; }
     .job .company { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.02em; }
@@ -136,14 +150,20 @@
     <div class="wrap">
       <a class="brand" href="#top">
         <svg viewBox="0 0 128 128" aria-hidden="true"><path fill="#47c5fb" d="M12.3 64.2 76.3 0h39.4L32 83.6z"/><path fill="#00569e" d="M76.3 128h39.4L81.6 93.9 60 115.5z"/><path fill="#00b5f8" d="M32 83.6 51.7 63.9l64 64.1H76.3z"/></svg>
-        Sangwook Han
+        <span data-i18n="brand">Sangwook Han</span>
       </a>
-      <div class="nav-links">
-        <a href="#work">Work</a>
-        <a href="#skills">Skills</a>
-        <a href="#opensource">Open Source</a>
-        <a href="#highlights">Highlights</a>
-        <a href="#contact">Contact</a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="#skills">Skills</a>
+          <a href="#work">Work</a>
+          <a href="#opensource">Open Source</a>
+          <a href="#highlights">Highlights</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <button id="langToggle" class="lang-toggle" type="button" aria-label="Switch language">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span data-lang-label>한국어</span>
+        </button>
       </div>
     </div>
   </nav>
@@ -151,38 +171,24 @@
   <!-- ============ HERO ============ -->
   <header id="top">
     <div class="wrap">
-      <h1>👋 Hi, I'm<br>Sangwook <span class="accent">Han</span>.</h1>
-      <p class="intro">
-        A <strong>software engineer</strong> based in Seoul, maintaining app-tech services with
-        <span class="hl">40,000+ MAU</span> at an adtech startup. <strong>Flutter</strong> is my primary tool —
-        but I choose, learn, and apply the right technology based on the problem and its business value.
+      <h1 data-i18n="hero.h1">👋 Hi, I'm<br>Sangwook <span class="accent">Han</span>.</h1>
+      <p class="intro" data-i18n="hero.intro">
+        I operate mobile services at <span class="hl">40,000+ MAU</span>, contributing to stable, reliable
+        development through test automation, architecture design, and performance optimization. I wrote
+        <span class="hl">1,350+ tests</span> to reach <span class="hl">77.04%</span> business-logic coverage,
+        and cut test execution time by <span class="hl">46.4%</span> with a parallel test runner.
       </p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="#contact">Contact →</a>
+        <a class="btn btn-primary" href="#contact" data-i18n="cta.contact">Contact →</a>
         <a class="btn btn-ghost" href="https://github.com/SangWook16074" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </header>
 
-  <!-- ============ WORK ============ -->
-  <section id="work" class="reveal">
-    <div class="wrap">
-      <div class="eyebrow">Where I work</div>
-      <div class="job">
-        <div class="when">2025.10 — Now</div>
-        <div>
-          <div class="company">Snapplay</div>
-          <div class="title">Flutter Developer</div>
-          <p>Joined as the first mobile engineer at an app-tech startup — developing and operating 3 app-tech services with a combined 40,000+ MAU, and maintaining the company's shared internal libraries.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ SKILLS ============ -->
   <section id="skills" class="reveal">
     <div class="wrap">
-      <div class="eyebrow">Tech stack</div>
+      <div class="eyebrow">Tech Stack</div>
 
       <div class="skill-group">
         <div class="k">Mobile &amp; Frontend</div>
@@ -221,18 +227,41 @@
     </div>
   </section>
 
+  <!-- ============ WORK ============ -->
+  <section id="work" class="reveal">
+    <div class="wrap">
+      <div class="eyebrow">Work Experience</div>
+      <div class="job">
+        <div class="when" data-i18n="work.nudge.when">2026.08 — Now</div>
+        <div>
+          <div class="company">Nudge Healthcare</div>
+          <div class="title" data-i18n="work.nudge.title">Flutter Developer</div>
+          <p data-i18n="work.nudge.desc">Building the “Everyone's Challenge” service within Cashwalk — a nationwide healthcare app-tech service with 4.7M+ DAU.</p>
+        </div>
+      </div>
+      <div class="job">
+        <div class="when" data-i18n="work.snapplay.when">2025.10 — 2026.07</div>
+        <div>
+          <div class="company">Snapplay</div>
+          <div class="title" data-i18n="work.snapplay.title">Flutter Developer</div>
+          <p data-i18n="work.snapplay.desc">Joined as the first mobile engineer at an app-tech startup — developed and operated 3 app-tech services with a combined 40,000+ MAU, and maintained the company's shared internal libraries.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ OPEN SOURCE ============ -->
   <section id="opensource" class="reveal">
     <div class="wrap">
-      <div class="eyebrow">Open source</div>
+      <div class="eyebrow">Open Source</div>
       <a class="os-card" href="https://pub.dev/packages/grabber_sheet" target="_blank" rel="noopener">
         <div class="os-top">
           <span class="name">grabber_sheet</span>
           <span class="tag">◆ pub.dev</span>
-          <span class="tag">🔥 418+ downloads in 3 weeks</span>
+          <span class="tag" data-i18n="opensource.tag">🔥 418+ downloads in 3 weeks</span>
         </div>
-        <p>A Flutter bottom-sheet package with a built-in drag handle and flexible snapping.</p>
-        <div class="arrow">View on pub.dev →</div>
+        <p data-i18n="opensource.desc">A Flutter bottom-sheet package with a built-in drag handle and flexible snapping.</p>
+        <div class="arrow" data-i18n="opensource.arrow">View on pub.dev →</div>
       </a>
     </div>
   </section>
@@ -245,22 +274,22 @@
         <div class="hl-item">
           <div class="em">🏆</div>
           <div>
-            <div class="h">3rd place — Vibe Coding Hackathon</div>
-            <div class="d">Flutter Korea 2025 · project “run-fit”</div>
+            <div class="h" data-i18n="hl.hack.h">3rd place — Vibe Coding Hackathon</div>
+            <div class="d" data-i18n="hl.hack.d">Flutter Korea 2025 · project “run-fit”</div>
           </div>
         </div>
         <div class="hl-item">
           <div class="em">💻</div>
           <div>
-            <div class="h">Competitive programming <span class="tier">◆ Platinum V · AC 1600</span></div>
-            <div class="d">Active problem solver on Baekjoon Online Judge (BOJ) · solved.ac</div>
+            <div class="h" data-i18n="hl.cp.h">Competitive programming <span class="tier">◆ Platinum V · AC 1600</span></div>
+            <div class="d" data-i18n="hl.cp.d">Active problem solver on Baekjoon Online Judge (BOJ) · solved.ac</div>
           </div>
         </div>
         <div class="hl-item">
           <div class="em">👥</div>
           <div>
-            <div class="h">Co-Founder — A&amp;I developer community</div>
-            <div class="d">Mentored 20+ students over 3 years</div>
+            <div class="h" data-i18n="hl.comm.h">Co-Founder — A&amp;I developer community</div>
+            <div class="d" data-i18n="hl.comm.d">Mentored 20+ students over 3 years</div>
           </div>
         </div>
       </div>
@@ -274,7 +303,7 @@
       <div class="links">
         <a class="link-card" href="mailto:sangwook@snapplay.io">
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg></span>
-          <span><span class="t">Email</span><br><span class="s">sangwook@snapplay.io</span></span>
+          <span><span class="t" data-i18n="contact.email">Email</span><br><span class="s">sangwook@snapplay.io</span></span>
         </a>
         <a class="link-card" href="https://github.com/SangWook16074" target="_blank" rel="noopener">
           <span class="ic"><img src="https://cdn.simpleicons.org/github/181717" alt="" /></span>
@@ -282,7 +311,7 @@
         </a>
         <a class="link-card" href="https://velog.io/@qazws78941" target="_blank" rel="noopener">
           <span class="ic"><img src="https://cdn.simpleicons.org/velog" alt="" /></span>
-          <span><span class="t">Blog</span><br><span class="s">velog.io/@qazws78941</span></span>
+          <span><span class="t" data-i18n="contact.blog">Blog</span><br><span class="s">velog.io/@qazws78941</span></span>
         </a>
       </div>
     </div>
@@ -291,12 +320,124 @@
   <!-- ============ FOOTER ============ -->
   <footer>
     <div class="wrap" style="display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; width:min(760px,88vw);">
-      <span>© 2026 Sangwook Han</span>
-      <span>Built with Flutter spirit ◆</span>
+      <span data-i18n="footer.copy">© 2026 Sangwook Han</span>
+      <span data-i18n="footer.built">Built with Flutter spirit ◆</span>
     </div>
   </footer>
 
   <script>
+    /* ---------- i18n dictionary ---------- */
+    const I18N = {
+      en: {
+        "brand": "Sangwook Han",
+        "hero.h1": "👋 Hi, I'm<br>Sangwook <span class=\"accent\">Han</span>.",
+        "hero.intro": "I operate mobile services at <span class=\"hl\">40,000+ MAU</span>, contributing to stable, reliable development through test automation, architecture design, and performance optimization. I wrote <span class=\"hl\">1,350+ tests</span> to reach <span class=\"hl\">77.04%</span> business-logic coverage, and cut test execution time by <span class=\"hl\">46.4%</span> with a parallel test runner.",
+        "cta.contact": "Contact →",
+        "work.nudge.when": "2026.08 — Now",
+        "work.nudge.title": "Flutter Developer",
+        "work.nudge.desc": "Building the “Everyone's Challenge” service within Cashwalk — a nationwide healthcare app-tech service with 4.7M+ DAU.",
+        "work.snapplay.when": "2025.10 — 2026.07",
+        "work.snapplay.title": "Flutter Developer",
+        "work.snapplay.desc": "Joined as the first mobile engineer at an app-tech startup — developed and operated 3 app-tech services with a combined 40,000+ MAU, and maintained the company's shared internal libraries.",
+        "opensource.tag": "🔥 418+ downloads in 3 weeks",
+        "opensource.desc": "A Flutter bottom-sheet package with a built-in drag handle and flexible snapping.",
+        "opensource.arrow": "View on pub.dev →",
+        "hl.hack.h": "3rd place — Vibe Coding Hackathon",
+        "hl.hack.d": "Flutter Korea 2025 · project “run-fit”",
+        "hl.cp.h": "Competitive programming <span class=\"tier\">◆ Platinum V · AC 1600</span>",
+        "hl.cp.d": "Active problem solver on Baekjoon Online Judge (BOJ) · solved.ac",
+        "hl.comm.h": "Co-Founder — A&amp;I developer community",
+        "hl.comm.d": "Mentored 20+ students over 3 years",
+        "contact.email": "Email",
+        "contact.blog": "Blog",
+        "footer.copy": "© 2026 Sangwook Han",
+        "footer.built": "Built with Flutter spirit ◆",
+        "meta.title": "Sangwook Han — Flutter Developer",
+        "meta.description": "Sangwook Han (한상욱) — Flutter developer based in Seoul. First mobile engineer at Snapplay, maintaining app-tech services with 40,000+ MAU.",
+        "meta.ogLocale": "en_US"
+      },
+      ko: {
+        "brand": "한상욱",
+        "hero.h1": "👋 안녕하세요,<br><span class=\"accent\">한상욱</span>입니다.",
+        "hero.intro": "MAU <span class=\"hl\">40,000+</span> 규모의 모바일 서비스를 운영하며 테스트 자동화, 아키텍처 설계, 성능 최적화를 통해 안정적인 서비스 개발에 기여해왔습니다. <span class=\"hl\">1,350개 이상</span>의 테스트를 작성해 비즈니스 로직 커버리지 <span class=\"hl\">77.04%</span>를 달성했으며, 병렬 테스트 러너 구현으로 테스트 실행 시간을 <span class=\"hl\">46.4%</span> 개선했습니다.",
+        "cta.contact": "연락하기 →",
+        "work.nudge.when": "2026.08 — 현재",
+        "work.nudge.title": "Flutter 개발자",
+        "work.nudge.desc": "DAU 470만+의 대국민 헬스케어 앱테크 ‘캐시워크’에서 ‘모두의 챌린지’ 서비스를 개발하고 있습니다.",
+        "work.snapplay.when": "2025.10 — 2026.07",
+        "work.snapplay.title": "Flutter 개발자",
+        "work.snapplay.desc": "앱테크 스타트업의 첫 모바일 엔지니어로 합류해 합산 40,000+ MAU의 앱테크 서비스 3개를 개발·운영했으며, 사내 공통 라이브러리를 관리했습니다.",
+        "opensource.tag": "🔥 3주 만에 418+ 다운로드",
+        "opensource.desc": "드래그 핸들과 유연한 스냅 기능을 내장한 Flutter 바텀시트 패키지입니다.",
+        "opensource.arrow": "pub.dev에서 보기 →",
+        "hl.hack.h": "바이브 코딩 해커톤 3위",
+        "hl.hack.d": "Flutter Korea 2025 · 프로젝트 “run-fit”",
+        "hl.cp.h": "알고리즘 문제 해결 <span class=\"tier\">◆ Platinum V · AC 1600</span>",
+        "hl.cp.d": "백준 온라인 저지(BOJ) · solved.ac에서 꾸준히 문제 해결",
+        "hl.comm.h": "A&amp;I 개발자 커뮤니티 공동 창립자",
+        "hl.comm.d": "3년간 20명 이상의 학생 멘토링",
+        "contact.email": "이메일",
+        "contact.blog": "블로그",
+        "footer.copy": "© 2026 한상욱",
+        "footer.built": "Flutter 정신으로 제작 ◆",
+        "meta.title": "한상욱 — Flutter 개발자",
+        "meta.description": "한상욱 (Sangwook Han) — 서울에서 활동하는 Flutter 개발자. Snapplay의 첫 모바일 엔지니어로 40,000+ MAU 앱테크 서비스를 운영합니다.",
+        "meta.ogLocale": "ko_KR"
+      }
+    };
+
+    const LANGS = ["en", "ko"];
+    const STORAGE_KEY = "lang";
+
+    function applyLang(lang) {
+      const dict = I18N[lang] || I18N.en;
+
+      // Text / markup nodes
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const key = el.getAttribute("data-i18n");
+        if (dict[key] != null) el.innerHTML = dict[key];
+      });
+
+      // <html lang>
+      document.documentElement.lang = lang;
+
+      // Head meta
+      if (dict["meta.title"]) document.title = dict["meta.title"];
+      const setMeta = (selector, value) => {
+        const node = document.querySelector(selector);
+        if (node && value != null) node.setAttribute("content", value);
+      };
+      setMeta('meta[name="description"]', dict["meta.description"]);
+      setMeta('meta[property="og:title"]', dict["meta.title"]);
+      setMeta('meta[property="og:description"]', dict["meta.description"]);
+      setMeta('meta[property="og:locale"]', dict["meta.ogLocale"]);
+
+      // Toggle button shows the OTHER language
+      const label = document.querySelector("[data-lang-label]");
+      if (label) label.textContent = lang === "ko" ? "EN" : "한국어";
+      const btn = document.getElementById("langToggle");
+      if (btn) btn.setAttribute("aria-label", lang === "ko" ? "Switch to English" : "한국어로 전환");
+
+      try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
+    }
+
+    function initialLang() {
+      let saved = null;
+      try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+      if (saved && LANGS.includes(saved)) return saved;
+      const nav = (navigator.language || "en").toLowerCase();
+      return nav.startsWith("ko") ? "ko" : "en";
+    }
+
+    let current = initialLang();
+    applyLang(current);
+
+    document.getElementById("langToggle").addEventListener("click", () => {
+      current = current === "ko" ? "en" : "ko";
+      applyLang(current);
+    });
+
+    /* ---------- reveal on scroll ---------- */
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
     }, { threshold: 0.12 });
