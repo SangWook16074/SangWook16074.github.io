@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" data-lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sangwook Han — Flutter Developer</title>
-  <meta name="description" content="Sangwook Han (한상욱) — Flutter developer based in Seoul. First mobile engineer at Snapplay, maintaining app-tech services with 40,000+ MAU." />
+  <title>한상욱 — Flutter Developer</title>
+  <meta name="description" content="한상욱 (Sangwook Han) — 서울에서 활동하는 Flutter 개발자. MAU 40,000+ 앱테크 서비스를 운영하며 테스트 자동화와 아키텍처 설계에 집중합니다." />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Sangwook Han — Flutter Developer" />
-  <meta property="og:description" content="Flutter developer based in Seoul. First mobile engineer at Snapplay, building app-tech services with 40,000+ MAU." />
-  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="한상욱 — Flutter Developer" />
+  <meta property="og:description" content="서울에서 활동하는 Flutter 개발자. MAU 40,000+ 앱테크 서비스를 운영하며 테스트 자동화와 아키텍처 설계에 집중합니다." />
+  <meta property="og:locale" content="ko_KR" />
   <meta property="og:url" content="https://greeting.hansw.dev" />
   <link rel="canonical" href="https://greeting.hansw.dev" />
 
@@ -19,429 +19,618 @@
 
   <style>
     :root {
-      --ink: #111315;
-      --gray: #6b7178;
-      --line: #e7e9ec;
-      --bg: #ffffff;
-      --flutter: #027dfd;
-      --flutter-dark: #02569b;
+      --ink:      #1a1c1e;
+      --ink-soft: #3d4145;
+      --gray:     #8a9096;
+      --gray-2:   #adb3b9;
+      --line:     #e9ebee;
+      --bg:       #ffffff;
+      /* Flutter theme */
+      --accent:      #027dfd;
+      --accent-deep: #02569b;
+      --accent-lite: #47c5fb;
+      --accent-wash: #eef6ff;
+      --col:      168px;  /* left meta column */
+      --gap:      32px;
+      --measure:  760px;
     }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
     body {
-      font-family: 'Pretendard', 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      background: var(--bg); color: var(--ink);
-      line-height: 1.65; -webkit-font-smoothing: antialiased;
+      font-family: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      font-size: 15.5px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      word-break: keep-all;
     }
-    a { color: inherit; text-decoration: none; }
-    .wrap { width: min(760px, 88vw); margin: 0 auto; }
+    a { color: inherit; }
+    b, strong { font-weight: 700; color: var(--ink); }
 
-    /* ---------- Nav ---------- */
-    nav { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
-    nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 62px; }
-    .brand { display: flex; align-items: center; gap: 9px; font-weight: 800; letter-spacing: -0.02em; }
-    .brand svg { width: 22px; height: 22px; }
-    .nav-right { display: flex; align-items: center; gap: 22px; }
-    .nav-links { display: flex; gap: 26px; font-size: 0.92rem; font-weight: 500; color: var(--gray); }
-    .nav-links a:hover { color: var(--flutter); }
-    @media (max-width: 560px) { .nav-links { display: none; } }
+    .wrap { width: min(var(--measure), calc(100% - 48px)); margin-inline: auto; }
 
-    /* ---------- Language toggle ---------- */
+    /* ---------- language visibility ---------- */
+    html[data-lang="ko"] .en { display: none; }
+    html[data-lang="en"] .ko { display: none; }
+
+    /* ---------- top bar ---------- */
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: saturate(180%) blur(12px);
+      -webkit-backdrop-filter: saturate(180%) blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar .wrap { height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand {
+      display: flex; align-items: center; gap: 9px;
+      min-width: 0; text-decoration: none;
+    }
+    .brand-name { font-weight: 700; font-size: 15px; letter-spacing: -.01em; white-space: nowrap; }
+    .brand-sep {
+      flex: none; width: 2px; height: 13px; border-radius: 1px;
+      background: var(--accent);
+    }
+    .brand-tag {
+      font-size: 13px; font-weight: 500;
+      color: var(--ink-soft); letter-spacing: -.01em;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
     .lang-toggle {
-      font-family: inherit; cursor: pointer;
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 0.82rem; font-weight: 600; color: var(--flutter-dark);
-      background: rgba(2,125,253,0.08); border: 1px solid rgba(2,125,253,0.18);
-      padding: 6px 13px; border-radius: 999px;
-      transition: transform .15s ease, border-color .2s ease, background .2s ease;
+      font: inherit; font-size: 13px; font-weight: 600;
+      color: var(--ink-soft); background: transparent;
+      border: 1px solid var(--line); border-radius: 999px;
+      padding: 6px 14px; cursor: pointer;
+      transition: border-color .18s ease, color .18s ease, background-color .18s ease;
     }
-    .lang-toggle:hover { transform: translateY(-1px); border-color: var(--flutter); background: rgba(2,125,253,0.12); }
-    .lang-toggle svg { width: 14px; height: 14px; }
+    .lang-toggle:hover { border-color: var(--accent); color: var(--accent-deep); background: var(--accent-wash); }
+    .lang-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-    /* ---------- Hero ---------- */
-    header { padding: 92px 0 60px; }
-    .badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 0.8rem; font-weight: 500;
-      color: var(--flutter-dark); background: rgba(2,125,253,0.08);
-      border: 1px solid rgba(2,125,253,0.18); padding: 6px 13px; border-radius: 999px;
+    /* ---------- hero ---------- */
+    .hero { padding: 104px 0 88px; }
+    .hero h1 {
+      font-size: clamp(40px, 7.6vw, 60px);
+      font-weight: 800; line-height: 1.16; letter-spacing: -.035em;
       margin-bottom: 30px;
     }
-    .badge .dot { width: 7px; height: 7px; border-radius: 50%; background: #16c60c; }
-    h1 {
-      font-size: clamp(2.7rem, 8vw, 4.6rem);
-      font-weight: 900; letter-spacing: -0.045em; line-height: 1.02; margin-bottom: 26px;
+    .hero h1 .dot { color: var(--accent); }
+    .hero p { font-size: 17px; line-height: 1.82; color: var(--ink-soft); max-width: 42em; }
+
+    /* ---------- sections ---------- */
+    section { padding-bottom: 76px; }
+    .section-title {
+      position: relative;
+      padding-top: 19px;
+      font-size: clamp(23px, 3.4vw, 27px);
+      font-weight: 800; letter-spacing: -.028em;
+      margin-bottom: 30px;
     }
-    h1 .accent { color: var(--flutter); }
-    h1 .kr { display: block; font-size: 0.42em; font-weight: 600; color: var(--gray); letter-spacing: -0.02em; margin-top: 14px; }
-    .intro { font-size: clamp(1.1rem, 2.6vw, 1.32rem); color: #33383d; max-width: 640px; }
-    .intro strong { color: var(--ink); font-weight: 700; }
-    .intro .hl { color: var(--flutter-dark); font-weight: 700; }
-    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 38px; }
-    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 11px; font-weight: 600; font-size: 0.95rem; transition: transform .15s ease, box-shadow .2s ease, border-color .2s ease; }
-    .btn-primary { background: var(--flutter); color: #fff; box-shadow: 0 14px 30px -14px rgba(2,86,155,0.6); }
-    .btn-primary:hover { transform: translateY(-2px); }
-    .btn-ghost { border: 1px solid var(--line); color: var(--ink); }
-    .btn-ghost:hover { transform: translateY(-2px); border-color: var(--flutter); }
+    .section-title::before {
+      content: ""; position: absolute; top: 0; left: 0;
+      width: 26px; height: 3px; border-radius: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-lite));
+    }
 
-    /* ---------- Section ---------- */
-    section { padding: 46px 0; border-top: 1px solid var(--line); }
-    .eyebrow { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.03em; color: var(--ink); margin-bottom: 24px; }
+    /* ---------- entry: résumé row (left meta / right body) ---------- */
+    .entry {
+      display: grid;
+      grid-template-columns: var(--col) 1fr;
+      column-gap: var(--gap);
+      align-items: start;
+    }
+    .entry + .entry { margin-top: 56px; }
 
-    /* ---------- Work ---------- */
-    .job { display: grid; grid-template-columns: 130px 1fr; gap: 24px; }
-    .job + .job { margin-top: 30px; padding-top: 30px; border-top: 1px solid var(--line); }
-    @media (max-width: 560px) { .job { grid-template-columns: 1fr; gap: 8px; } }
-    .job .when { font-size: 0.86rem; color: var(--gray); padding-top: 4px; }
-    .job .company { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.02em; }
-    .job .title { color: var(--flutter-dark); font-weight: 600; margin-bottom: 10px; }
-    .job p { color: #33383d; }
+    .meta h3 { font-size: 17px; font-weight: 700; letter-spacing: -.02em; line-height: 1.42; margin-bottom: 4px; }
+    .meta .role { font-size: 14.5px; color: var(--gray); line-height: 1.5; }
+    .meta .date {
+      font-size: 12.5px; color: var(--gray-2); letter-spacing: .01em;
+      margin-top: 6px; font-variant-numeric: tabular-nums;
+    }
 
-    /* ---------- Skills ---------- */
-    .skill-group { margin-bottom: 20px; }
-    .skill-group:last-child { margin-bottom: 0; }
-    .skill-group .k { font-size: 1.05rem; font-weight: 700; color: var(--ink); letter-spacing: -0.02em; margin-bottom: 12px; }
-    .chips { display: flex; flex-wrap: wrap; gap: 9px; }
-    .chip { display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--line); padding: 8px 15px; border-radius: 999px; font-weight: 600; font-size: 0.92rem; transition: transform .15s ease, border-color .2s ease; }
-    .chip:hover { transform: translateY(-2px); border-color: var(--flutter); }
-    .chip .ic { width: 16px; height: 16px; display: block; flex-shrink: 0; }
-    .chip .gi { color: var(--gray); }
+    /* left-column label for one bullet group */
+    .sub-label { font-size: 15px; font-weight: 700; letter-spacing: -.015em; color: var(--accent-deep); }
 
-    /* ---------- Open Source ---------- */
-    .os-card { display: block; border: 1px solid var(--line); border-radius: 15px; padding: 24px 26px; transition: transform .16s ease, border-color .2s ease, box-shadow .25s ease; }
-    .os-card:hover { transform: translateY(-3px); border-color: var(--flutter); box-shadow: 0 18px 40px -22px rgba(2,86,155,0.45); }
-    .os-top { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
-    .os-top .name { font-size: 1.15rem; font-weight: 600; color: var(--flutter-dark); }
-    .os-top .tag { font-size: 0.72rem; font-weight: 500; color: var(--flutter-dark); background: rgba(2,125,253,0.08); border: 1px solid rgba(2,125,253,0.18); padding: 3px 9px; border-radius: 999px; }
-    .os-card p { color: #33383d; }
-    .os-card .arrow { margin-top: 14px; font-weight: 600; color: var(--flutter); font-size: 0.9rem; }
+    /* right-column blocks */
+    .lead { color: var(--ink-soft); }
+    .group-title { font-size: 17px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 10px; }
+    .cell { min-width: 0; }
 
-    /* ---------- Highlights ---------- */
-    .hl-list { display: flex; flex-direction: column; gap: 4px; }
-    .hl-item { display: grid; grid-template-columns: 34px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
-    .hl-item:last-child { border-bottom: none; }
-    .hl-item .em { font-size: 1.3rem; line-height: 1.4; }
-    .hl-item .h { font-weight: 700; font-size: 1.02rem; letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .hl-item .d { color: var(--gray); font-size: 0.94rem; }
-    .tier { display: inline-flex; align-items: center; gap: 6px; font-size: 0.74rem; font-weight: 600; color: #1f8a70; background: rgba(31,138,112,0.1); border: 1px solid rgba(31,138,112,0.22); padding: 3px 10px; border-radius: 999px; letter-spacing: 0.02em; }
+    /* vertical rhythm — explicit, never sibling-dependent */
+    .mt-lg   { margin-top: 28px; }
+    .mt-md   { margin-top: 18px; }
 
-    /* ---------- Contact ---------- */
-    .links { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
-    .link-card { display: flex; align-items: center; gap: 13px; border: 1px solid var(--line); border-radius: 13px; padding: 16px 18px; transition: transform .15s ease, border-color .2s ease; }
-    .link-card:hover { transform: translateY(-2px); border-color: var(--flutter); }
-    .link-card .ic { display: grid; place-items: center; color: var(--flutter-dark); flex-shrink: 0; }
-    .link-card .ic img, .link-card .ic svg { width: 30px; height: 30px; display: block; }
-    .link-card .t { font-weight: 700; font-size: 0.95rem; }
-    .link-card .s { font-size: 0.82rem; color: var(--gray); }
+    /* ---------- bullets ---------- */
+    .bullets { list-style: none; }
+    .bullets li { position: relative; padding-left: 15px; color: var(--ink-soft); line-height: 1.72; }
+    .bullets li + li { margin-top: 7px; }
+    .bullets li::before {
+      content: ""; position: absolute; left: 2px; top: .72em;
+      width: 3px; height: 3px; border-radius: 50%; background: var(--accent);
+    }
 
-    /* ---------- Footer ---------- */
-    footer { padding: 40px 0 60px; border-top: 1px solid var(--line); color: var(--gray); font-size: 0.88rem; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; }
+    /* ---------- contact ---------- */
+    .contact-list a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-color: var(--accent);
+      transition: color .18s ease, text-decoration-color .18s ease;
+    }
+    .contact-list a:hover { color: var(--accent-deep); text-decoration-color: var(--accent-deep); }
+    .cell a { color: var(--accent-deep); text-decoration-color: var(--accent); }
 
-    /* reveal */
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .55s ease, transform .55s ease; }
+    /* ---------- footer ---------- */
+    footer { border-top: 1px solid var(--line); padding: 28px 0 56px; font-size: 13px; color: var(--gray-2); }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; }
+    .footer-domain { color: var(--accent-deep); }
+
+    /* ---------- reveal ---------- */
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
     .reveal.in { opacity: 1; transform: none; }
-    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } html { scroll-behavior: auto; } }
+
+    /* ---------- responsive ---------- */
+    @media (max-width: 720px) {
+      body { font-size: 15px; }
+      .wrap { width: calc(100% - 40px); }
+      .hero { padding: 68px 0 60px; }
+      section { padding-bottom: 56px; }
+      .entry { grid-template-columns: 1fr; }
+      .entry .meta { margin-bottom: 18px; }
+      .entry .spacer { display: none; }
+      .sub-label { margin-top: 20px; margin-bottom: 8px; }
+      .entry + .entry { margin-top: 44px; }
+      .mt-lg { margin-top: 24px; }
+      .section-title { padding-top: 16px; }
+    }
+
+    @media (max-width: 560px) {
+      .brand { gap: 7px; }
+      .brand-name { font-size: 14px; }
+      .brand-tag { font-size: 11.5px; }
+    }
+    @media (max-width: 400px) {
+      .brand { gap: 6px; }
+      .brand-tag { font-size: 11px; }
+      .lang-toggle { padding: 6px 11px; }
+    }
+    @media (max-width: 300px) {
+      .brand-sep, .brand-tag { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      html { scroll-behavior: auto; }
+    }
+
+    @media print {
+      .topbar, footer { display: none; }
+      .reveal { opacity: 1; transform: none; }
+      .hero { padding: 24px 0 48px; }
+      .section-title::before { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      section { padding-bottom: 48px; }
+      body { font-size: 10.5pt; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- ============ NAV ============ -->
-  <nav>
+  <!-- ============ TOP BAR ============ -->
+  <div class="topbar">
     <div class="wrap">
       <a class="brand" href="#top">
-        <svg viewBox="0 0 128 128" aria-hidden="true"><path fill="#47c5fb" d="M12.3 64.2 76.3 0h39.4L32 83.6z"/><path fill="#00569e" d="M76.3 128h39.4L81.6 93.9 60 115.5z"/><path fill="#00b5f8" d="M32 83.6 51.7 63.9l64 64.1H76.3z"/></svg>
-        <span data-i18n="brand">Sangwook Han</span>
+        <span class="brand-name"><span class="ko">한상욱</span><span class="en">Sangwook Han</span></span>
+        <span class="brand-sep" aria-hidden="true"></span>
+        <span class="brand-tag"><span class="ko">비즈니스 가치를 구현하는 개발자</span><span class="en">Engineering business value</span></span>
       </a>
-      <div class="nav-right">
-        <div class="nav-links">
-          <a href="#skills">Skills</a>
-          <a href="#work">Work</a>
-          <a href="#opensource">Open Source</a>
-          <a href="#highlights">Highlights</a>
-          <a href="#contact">Contact</a>
-        </div>
-        <button id="langToggle" class="lang-toggle" type="button" aria-label="Switch language">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          <span data-lang-label>한국어</span>
-        </button>
-      </div>
+      <button id="langToggle" class="lang-toggle" type="button" aria-label="Switch language">
+        <span class="ko">EN</span><span class="en">한국어</span>
+      </button>
     </div>
-  </nav>
+  </div>
 
   <!-- ============ HERO ============ -->
-  <header id="top">
+  <header class="hero" id="top">
     <div class="wrap">
-      <h1 data-i18n="hero.h1">👋 Hi, I'm<br>Sangwook <span class="accent">Han</span>.</h1>
-      <p class="intro" data-i18n="hero.intro">
-        I operate mobile services at <span class="hl">40,000+ MAU</span>, contributing to stable, reliable
-        development through test automation, architecture design, and performance optimization. I wrote
-        <span class="hl">1,350+ tests</span> to reach <span class="hl">77.04%</span> business-logic coverage,
-        and cut test execution time by <span class="hl">46.4%</span> with a parallel test runner.
+      <h1>
+        <span class="ko">안녕하세요,<br>저는 한상욱입니다<span class="dot">.</span></span>
+        <span class="en">Hello,<br>I'm Sangwook Han<span class="dot">.</span></span>
+      </h1>
+      <p class="ko">
+        MAU <b>40,000+</b> 규모의 모바일 서비스를 운영하며 테스트 자동화, 아키텍처 설계,
+        성능 최적화를 통해 안정적인 서비스 개발에 기여해왔습니다.
+        <b>1,350개 이상</b>의 테스트를 작성해 비즈니스 로직 커버리지 <b>77.04%</b>를 달성했으며,
+        병렬 테스트 러너 구현으로 테스트 실행 시간을 <b>46.4%</b> 개선했습니다.
       </p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="#contact" data-i18n="cta.contact">Contact →</a>
-        <a class="btn btn-ghost" href="https://github.com/SangWook16074" target="_blank" rel="noopener">GitHub</a>
-      </div>
+      <p class="en">
+        I operate mobile services at <b>40,000+ MAU</b>, contributing to stable, reliable development
+        through test automation, architecture design, and performance optimization.
+        I wrote over <b>1,350 tests</b> to reach <b>77.04%</b> business-logic coverage, and cut test
+        execution time by <b>46.4%</b> with a parallel test runner.
+      </p>
     </div>
   </header>
 
-  <!-- ============ SKILLS ============ -->
-  <section id="skills" class="reveal">
+  <!-- ============ WORK EXPERIENCE ============ -->
+  <section class="reveal" id="work">
     <div class="wrap">
-      <div class="eyebrow">Tech Stack</div>
+      <h2 class="section-title">Work Experience</h2>
 
-      <div class="skill-group">
-        <div class="k">Mobile &amp; Frontend</div>
-        <div class="chips">
-          <span class="chip"><img class="ic" src="https://cdn.simpleicons.org/flutter" alt="" /> Flutter</span>
-          <span class="chip"><img class="ic" src="https://cdn.simpleicons.org/dart" alt="" /> Dart</span>
-          <span class="chip"><img class="ic" src="https://cdn.simpleicons.org/apple/000000" alt="" /> iOS</span>
-          <span class="chip"><img class="ic" src="https://cdn.simpleicons.org/swift" alt="" /> Swift</span>
-          <span class="chip"><img class="ic" src="https://cdn.simpleicons.org/swift" alt="" /> SwiftUI</span>
+      <!-- Nudge Healthcare -->
+      <div class="entry">
+        <div class="meta">
+          <h3>Nudge Healthcare</h3>
+          <p class="role"><span class="ko">Flutter 개발자</span><span class="en">Flutter Developer</span></p>
+          <p class="date"><span class="ko">2026.08 - 현재</span><span class="en">2026.08 - Present</span></p>
+        </div>
+        <div class="cell">
+          <p class="lead">
+            <span class="ko">DAU <b>470만+</b>의 대국민 헬스케어 앱테크 ‘캐시워크’에서 ‘모두의 챌린지’ 서비스를 개발하고 있습니다.</span>
+            <span class="en">Building the “Everyone's Challenge” service inside Cashwalk — a nationwide healthcare app-tech service with <b>4.7M+ DAU</b>.</span>
+          </p>
         </div>
       </div>
 
-      <div class="skill-group">
-        <div class="k">Backend</div>
-        <div class="chips">
-          <span class="chip"><img class="ic" src="https://cdn.simpleicons.org/springboot" alt="" /> Spring Boot</span>
-          <span class="chip"><img class="ic" src="https://cdn.simpleicons.org/spring" alt="" /> Spring WebFlux</span>
-          <span class="chip"><img class="ic" src="https://cdn.simpleicons.org/kotlin" alt="" /> Kotlin</span>
-          <span class="chip"><img class="ic" src="https://cdn.simpleicons.org/mysql" alt="" /> MySQL</span>
-          <span class="chip"><img class="ic" src="https://cdn.simpleicons.org/mongodb" alt="" /> MongoDB</span>
-          <span class="chip"><img class="ic" src="https://cdn.simpleicons.org/redis" alt="" /> Redis</span>
+      <!-- Snapplay -->
+      <div class="entry">
+        <div class="meta">
+          <h3>Snapplay</h3>
+          <p class="role"><span class="ko">Flutter 개발자</span><span class="en">Flutter Developer</span></p>
+          <p class="date">2025.10 - 2026.07</p>
         </div>
-      </div>
+        <div class="cell">
+          <p class="lead">
+            <span class="ko"><b>2년차</b> 앱테크 스타트업의 <b>첫 모바일 엔지니어</b>로 합류하여 MAU <b>40,000+</b> 규모의 앱테크 서비스 개발 및 운영, 공통 라이브러리 유지보수를 담당했습니다.</span>
+            <span class="en">Joined a <b>two-year-old</b> app-tech startup as its <b>first mobile engineer</b>, owning the development and operation of services with <b>40,000+ MAU</b> and maintaining the shared internal libraries.</span>
+          </p>
+        </div>
 
-      <div class="skill-group">
-        <div class="k">DevOps &amp; Tools</div>
-        <div class="chips">
-          <span class="chip"><img class="ic" src="https://cdn.simpleicons.org/docker" alt="" /> Docker</span>
-          <span class="chip"><img class="ic" src="https://cdn.simpleicons.org/githubactions" alt="" /> GitHub Actions</span>
-          <span class="chip"><img class="ic" src="https://cdn.simpleicons.org/firebase" alt="" /> Firebase</span>
-          <span class="chip"><img class="ic" src="https://cdn.simpleicons.org/supabase" alt="" /> Supabase</span>
-          <span class="chip"><svg class="ic gi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg> AWS</span>
-          <span class="chip"><svg class="ic gi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg> REST API</span>
+        <div class="spacer"></div>
+        <div class="cell mt-lg">
+          <h4 class="group-title">Contribution</h4>
+          <ul class="bullets ko">
+            <li>TDD 및 골든 테스트를 도입하여 <b>1,350개 테스트를 작성</b>하고 핵심 비즈니스 로직 커버리지 <b>77.04% 달성</b></li>
+            <li>LPT 알고리즘 기반 병렬 테스트 러너를 구현하여 테스트 실행 시간을 <b>111초 → 59초로 46.4% 단축</b></li>
+            <li>PoC 단계 레거시 코드를 <b>Clean Architecture + Bloc 기반 구조로 재설계</b>하여 확장 가능하고 유지보수 용이한 코드베이스 구축</li>
+            <li>DevTools 네트워크 분석을 통해 중복 데이터 동기화 로직을 식별하고, API 최적화를 통해 <b>유스케이스별 트래픽 최대 80% 감소</b></li>
+            <li>Firebase Crashlytics 기반 통합 에러 모니터링 체계를 구축하여 <b>앱에서 발생하는 모든 런타임 예외를 수집·분석할 수 있도록 개선</b></li>
+            <li>Android WorkManager 및 iOS WidgetKit 기반 홈 화면 위젯 및 백그라운드 데이터 동기화 기능 개발</li>
+          </ul>
+          <ul class="bullets en">
+            <li>Introduced TDD and golden tests, <b>writing 1,350 tests</b> and reaching <b>77.04% coverage</b> of core business logic</li>
+            <li>Implemented an LPT-based parallel test runner, cutting test execution time <b>from 111s to 59s — a 46.4% reduction</b></li>
+            <li>Rebuilt PoC-stage legacy code around <b>Clean Architecture + Bloc</b>, producing a scalable and maintainable codebase</li>
+            <li>Identified duplicated data-sync logic through DevTools network analysis and optimized the API layer, <b>reducing per-use-case traffic by up to 80%</b></li>
+            <li>Built unified error monitoring on Firebase Crashlytics so that <b>every runtime exception in the app is collected and analyzed</b></li>
+            <li>Developed home-screen widgets and background data sync with Android WorkManager and iOS WidgetKit</li>
+          </ul>
+        </div>
+
+        <div class="spacer"></div>
+        <div class="cell mt-lg">
+          <h4 class="group-title">Skills</h4>
+          <ul class="bullets">
+            <li>Flutter, Android, iOS</li>
+            <li>Bloc, Clean Architecture</li>
+            <li>Freezed, GoRouter, Retrofit, Dio</li>
+            <li>RESTful API, WebSocket</li>
+            <li>FCM, Crashlytics, Github Actions</li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ WORK ============ -->
-  <section id="work" class="reveal">
+  <!-- ============ PROJECT ============ -->
+  <section class="reveal" id="project">
     <div class="wrap">
-      <div class="eyebrow">Work Experience</div>
-      <div class="job">
-        <div class="when" data-i18n="work.nudge.when">2026.08 — Now</div>
-        <div>
-          <div class="company">Nudge Healthcare</div>
-          <div class="title" data-i18n="work.nudge.title">Flutter Developer</div>
-          <p data-i18n="work.nudge.desc">Building the “Everyone's Challenge” service within Cashwalk — a nationwide healthcare app-tech service with 4.7M+ DAU.</p>
+      <h2 class="section-title">Project</h2>
+
+      <!-- A&I.com -->
+      <div class="entry">
+        <div class="meta">
+          <h3>A&amp;I.com</h3>
+          <p class="role">PL, Maintainer</p>
+          <p class="date"><span class="ko">2025.01 - 현재</span><span class="en">2025.01 - Present</span></p>
+        </div>
+        <div class="cell">
+          <p class="lead">
+            <span class="ko">약 <b>1년 6개월째</b> 운영 중인 A&amp;I 온라인 서비스 프로젝트에서 <b>팀 리드</b>를 맡아 Flutter Web 기반 프론트엔드 및 CMS의 설계·개발·운영을 담당하고 있습니다.</span>
+            <span class="en"><b>Team lead</b> on the A&amp;I online service, now running for about <b>a year and a half</b> — responsible for the design, development, and operation of the Flutter Web frontend and the CMS.</span>
+          </p>
+        </div>
+
+        <div class="spacer"></div>
+        <div class="cell mt-lg"><h4 class="group-title" style="margin-bottom:0">Contribution</h4></div>
+
+        <div class="sub-label mt-md">Team Lead</div>
+        <div class="cell mt-md">
+          <ul class="bullets ko">
+            <li>기능 우선순위 기반 스프린트로 <b>MVP 개발 기간을 30일 → 10일로 단축</b></li>
+            <li>팀 규모 증가로 발생한 배포 충돌과 기능 간 의존성 문제를 해결하기 위해 Melos 기반 멀티패키지 아키텍처를 설계·적용하여 <b>5개 내부 패키지, 58,000여 줄 규모의 코드베이스를 기능별 독립 구조로 전환</b></li>
+          </ul>
+          <ul class="bullets en">
+            <li>Ran priority-driven sprints that <b>cut MVP development from 30 days to 10</b></li>
+            <li>Designed and rolled out a Melos-based multi-package architecture to resolve deploy conflicts and cross-feature coupling as the team grew, <b>splitting a 58,000-line codebase into 5 independent internal packages</b></li>
+          </ul>
+        </div>
+
+        <div class="sub-label mt-md">Frontend</div>
+        <div class="cell mt-md">
+          <ul class="bullets ko">
+            <li>Flutter Web 기반 UI/UX 설계 및 개발</li>
+            <li>SSE 기반 실시간 채점 결과 스트리밍 UX 구현</li>
+            <li>Dio Interceptor로 JWT 자동 갱신, 요청 재시도, 전역 로그아웃 처리까지 일관된 인증 흐름 설계</li>
+            <li><b>230개 이상의 자동화 테스트 CI 구축으로 배포 전 품질 검증 자동화</b></li>
+            <li>Github Actions + Firebase Hosting 기반으로 main 혹은 tag 푸시 시 프로덕션, QA 환경으로 배포되는 CI/CD 구축</li>
+            <li><b>Flutter Web 배포 시 발생하는 캐싱 문제를 해결</b>하여 서비스 배포 직후 <b>최신 버전이 즉시 반영되도록 개선</b></li>
+          </ul>
+          <ul class="bullets en">
+            <li>Designed and built the Flutter Web UI/UX</li>
+            <li>Implemented a real-time grading-result streaming UX over SSE</li>
+            <li>Designed one coherent auth flow — automatic JWT refresh, request retries, and global logout — through a Dio interceptor</li>
+            <li><b>Automated pre-release quality checks with a CI suite of 230+ automated tests</b></li>
+            <li>Built CI/CD on GitHub Actions + Firebase Hosting that deploys to production or QA on a push to main or a tag</li>
+            <li><b>Solved the caching problem in Flutter Web deployments</b> so that <b>the latest version is served immediately after release</b></li>
+          </ul>
+        </div>
+
+        <div class="spacer"></div>
+        <div class="cell mt-lg">
+          <h4 class="group-title">Skills</h4>
+          <ul class="bullets">
+            <li>Flutter, Dart</li>
+            <li>Riverpods, Retrofit, Dio</li>
+            <li>TypeScript, Vite</li>
+            <li>GitHub Actions, Docker, Firebase</li>
+          </ul>
         </div>
       </div>
-      <div class="job">
-        <div class="when" data-i18n="work.snapplay.when">2025.10 — 2026.07</div>
-        <div>
-          <div class="company">Snapplay</div>
-          <div class="title" data-i18n="work.snapplay.title">Flutter Developer</div>
-          <p data-i18n="work.snapplay.desc">Joined as the first mobile engineer at an app-tech startup — developed and operated 3 app-tech services with a combined 40,000+ MAU, and maintained the company's shared internal libraries.</p>
+
+      <!-- A&I community -->
+      <div class="entry">
+        <div class="meta">
+          <h3>A&amp;I</h3>
+          <p class="role">Organizer</p>
+          <p class="date"><span class="ko">2024.01 - 현재</span><span class="en">2024.01 - Present</span></p>
+        </div>
+        <div class="cell">
+          <ul class="bullets ko">
+            <li><b>누적 40명 이상</b>이 활동한 개발 커뮤니티 A&amp;I를 운영하며 프로젝트, 멘토링, 기술 공유 문화를 만들어왔습니다.</li>
+            <li><b>120회 이상의 테크 세션, 20회 이상의 네트워킹</b>을 통해 지식 공유와 성장을 지원했습니다.</li>
+          </ul>
+          <ul class="bullets en">
+            <li>Run A&amp;I, a developer community with <b>40+ cumulative members</b>, building a culture of side projects, mentoring, and knowledge sharing.</li>
+            <li>Supported learning and growth through <b>120+ tech sessions and 20+ networking events</b>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Boostcamp -->
+      <div class="entry">
+        <div class="meta">
+          <h3><span class="ko">부스트캠프<br>웹/모바일 9기</span><span class="en">Boostcamp<br>Web/Mobile 9</span></h3>
+          <p class="role"><span class="ko">네이버 커넥트재단</span><span class="en">NAVER Connect Foundation</span></p>
+          <p class="date">2024.07 - 2024.08</p>
+        </div>
+        <div class="cell">
+          <ul class="bullets ko">
+            <li>온라인 미션을 통해 <b>운영체제, 메모리 구조, 컴파일러, 멀티스레딩 등</b> CS 핵심 개념을 직접 구현하며 학습했습니다.</li>
+            <li>최고의 동료들과 코드 리뷰, 짝 프로그래밍 등 다양한 활동으로 <b>협업역량을 키웠습니다.</b></li>
+          </ul>
+          <ul class="bullets en">
+            <li>Learned core CS concepts — <b>operating systems, memory layout, compilers, multithreading</b> — by implementing them directly in online missions.</li>
+            <li><b>Sharpened my collaboration skills</b> through code review, pair programming, and other work with outstanding peers.</li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ OPEN SOURCE ============ -->
-  <section id="opensource" class="reveal">
+  <!-- ============ OTHER EXPERIENCES ============ -->
+  <section class="reveal" id="other">
     <div class="wrap">
-      <div class="eyebrow">Open Source</div>
-      <a class="os-card" href="https://pub.dev/packages/grabber_sheet" target="_blank" rel="noopener">
-        <div class="os-top">
-          <span class="name">grabber_sheet</span>
-          <span class="tag">◆ pub.dev</span>
-          <span class="tag" data-i18n="opensource.tag">🔥 418+ downloads in 3 weeks</span>
+      <h2 class="section-title">Other Experiences</h2>
+
+      <div class="entry">
+        <div class="meta">
+          <h3><span class="ko">바이브 코딩 해커톤</span><span class="en">Vibe Coding Hackathon</span></h3>
+          <p class="role">3rd, Flutter Seoul</p>
+          <p class="date">2025.10.28</p>
         </div>
-        <p data-i18n="opensource.desc">A Flutter bottom-sheet package with a built-in drag handle and flexible snapping.</p>
-        <div class="arrow" data-i18n="opensource.arrow">View on pub.dev →</div>
-      </a>
+        <div class="cell">
+          <ul class="bullets ko">
+            <li>Gemini CLI + Cursor AI를 활용해 요구사항 정의부터 구현까지 전 과정을 <b>100% 자연어 기반</b>으로 진행했습니다.</li>
+            <li><b>90분 동안 프로덕션 수준의 헬스케어 앱 Run-Fit을 완성</b>하고 <b>3위를 수상</b>했습니다.</li>
+          </ul>
+          <ul class="bullets en">
+            <li>Drove the whole process — from requirements to implementation — <b>entirely in natural language</b> with Gemini CLI and Cursor AI.</li>
+            <li><b>Shipped Run-Fit, a production-grade healthcare app, in 90 minutes</b> and <b>placed 3rd</b>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="meta">
+          <h3>Velog</h3>
+          <p class="role">Maintainer</p>
+          <p class="date"><span class="ko">2024.01 - 현재</span><span class="en">2024.01 - Present</span></p>
+        </div>
+        <div class="cell">
+          <ul class="bullets ko">
+            <li>블로그 플랫폼 Velog에서 <b>3년간</b> 트러블슈팅, 학습 내용, 회고를 꾸준히 기록했습니다.</li>
+            <li><b>280개 이상의 글을 작성</b>하고, 누적 조회수 <b>100,000회 이상</b>을 달성했습니다.</li>
+          </ul>
+          <ul class="bullets en">
+            <li>Have written consistently on Velog <b>for three years</b> — troubleshooting notes, study logs, and retrospectives.</li>
+            <li><b>Published 280+ posts</b> and reached <b>100,000+ cumulative views</b>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="meta">
+          <h3>BaekJoon</h3>
+          <p class="role">Problem Solve</p>
+          <p class="date">2025.10.28</p>
+        </div>
+        <div class="cell">
+          <ul class="bullets ko">
+            <li>백준 온라인 저지를 통해 알고리즘적 사고와 문제 해결력을 길렀습니다.</li>
+            <li><b>390개 이상의 문제를 해결</b>하고, <b>Platinum 5</b>를 달성했습니다.</li>
+          </ul>
+          <ul class="bullets en">
+            <li>Built algorithmic thinking and problem-solving skills on Baekjoon Online Judge.</li>
+            <li><b>Solved 390+ problems</b> and reached <b>Platinum 5</b>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="meta">
+          <h3>Opensources</h3>
+          <p class="role">Contributor / Maintainer</p>
+        </div>
+        <div class="cell">
+          <ul class="bullets ko">
+            <li><b>3주간 다운로드 400회 이상</b>을 기록한 Flutter 패키지 <a href="https://pub.dev/packages/grabber_sheet" target="_blank" rel="noopener">Grabber Sheet</a>를 배포했습니다.</li>
+            <li>Swift 한국어 번역 문서 Swift Book Korean에 오탈자를 발견하여 정정 기여를 했습니다.</li>
+          </ul>
+          <ul class="bullets en">
+            <li>Published <a href="https://pub.dev/packages/grabber_sheet" target="_blank" rel="noopener">Grabber Sheet</a>, a Flutter package that hit <b>400+ downloads in three weeks</b>.</li>
+            <li>Contributed typo corrections to Swift Book Korean, the Korean translation of the Swift book.</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ============ HIGHLIGHTS ============ -->
-  <section id="highlights" class="reveal">
+  <!-- ============ EDUCATION ============ -->
+  <section class="reveal" id="education">
     <div class="wrap">
-      <div class="eyebrow">Highlights</div>
-      <div class="hl-list">
-        <div class="hl-item">
-          <div class="em">🏆</div>
-          <div>
-            <div class="h" data-i18n="hl.hack.h">3rd place — Vibe Coding Hackathon</div>
-            <div class="d" data-i18n="hl.hack.d">Flutter Korea 2025 · project “run-fit”</div>
-          </div>
+      <h2 class="section-title">Education</h2>
+      <div class="entry">
+        <div class="meta">
+          <h3><span class="ko">인덕대학교</span><span class="en">Induk University</span></h3>
+          <p class="date">2024.01 – 2024.12</p>
         </div>
-        <div class="hl-item">
-          <div class="em">💻</div>
-          <div>
-            <div class="h" data-i18n="hl.cp.h">Competitive programming <span class="tier">◆ Platinum V · AC 1600</span></div>
-            <div class="d" data-i18n="hl.cp.d">Active problem solver on Baekjoon Online Judge (BOJ) · solved.ac</div>
-          </div>
-        </div>
-        <div class="hl-item">
-          <div class="em">👥</div>
-          <div>
-            <div class="h" data-i18n="hl.comm.h">Co-Founder — A&amp;I developer community</div>
-            <div class="d" data-i18n="hl.comm.d">Mentored 20+ students over 3 years</div>
-          </div>
+        <div class="cell">
+          <ul class="bullets ko">
+            <li>학사학위 전공심화과정 졸업</li>
+            <li>전체 평점 <b>4.36/4.5</b></li>
+            <li>재학 중 <b>성적우수장학금 5회</b></li>
+          </ul>
+          <ul class="bullets en">
+            <li>Graduated from the bachelor's degree advanced-major program</li>
+            <li>Overall GPA <b>4.36/4.5</b></li>
+            <li><b>Five academic excellence scholarships</b> while enrolled</li>
+          </ul>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ============ CERTIFICATES ============ -->
+  <section class="reveal" id="certificates">
+    <div class="wrap">
+      <h2 class="section-title">Certificates</h2>
+      <ul class="bullets ko">
+        <li>정보처리기사</li>
+        <li>컴퓨터활용능력 2급</li>
+      </ul>
+      <ul class="bullets en">
+        <li>Engineer Information Processing</li>
+        <li>Computer Specialist in Spreadsheet &amp; Database, Level 2</li>
+      </ul>
     </div>
   </section>
 
   <!-- ============ CONTACT ============ -->
-  <section id="contact" class="reveal">
+  <section class="reveal" id="contact">
     <div class="wrap">
-      <div class="eyebrow">Contact</div>
-      <div class="links">
-        <a class="link-card" href="mailto:sangwook@snapplay.io">
-          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg></span>
-          <span><span class="t" data-i18n="contact.email">Email</span><br><span class="s">sangwook@snapplay.io</span></span>
-        </a>
-        <a class="link-card" href="https://github.com/SangWook16074" target="_blank" rel="noopener">
-          <span class="ic"><img src="https://cdn.simpleicons.org/github/181717" alt="" /></span>
-          <span><span class="t">GitHub</span><br><span class="s">@SangWook16074</span></span>
-        </a>
-        <a class="link-card" href="https://velog.io/@qazws78941" target="_blank" rel="noopener">
-          <span class="ic"><img src="https://cdn.simpleicons.org/velog" alt="" /></span>
-          <span><span class="t" data-i18n="contact.blog">Blog</span><br><span class="s">velog.io/@qazws78941</span></span>
-        </a>
-      </div>
+      <h2 class="section-title">Contact</h2>
+      <ul class="bullets contact-list">
+        <li><a href="https://velog.io/@qazws78941" target="_blank" rel="noopener">Velog</a></li>
+        <li><a href="https://github.com/SangWook16074" target="_blank" rel="noopener">Github</a></li>
+        <li><a href="mailto:qazws78941@gmail.com">E-mail</a></li>
+      </ul>
     </div>
   </section>
 
   <!-- ============ FOOTER ============ -->
   <footer>
-    <div class="wrap" style="display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; width:min(760px,88vw);">
-      <span data-i18n="footer.copy">© 2026 Sangwook Han</span>
-      <span data-i18n="footer.built">Built with Flutter spirit ◆</span>
+    <div class="wrap">
+      <span class="ko">© 2026 한상욱</span><span class="en">© 2026 Sangwook Han</span>
+      <span class="footer-domain">greeting.hansw.dev</span>
     </div>
   </footer>
 
   <script>
-    /* ---------- i18n dictionary ---------- */
-    const I18N = {
-      en: {
-        "brand": "Sangwook Han",
-        "hero.h1": "👋 Hi, I'm<br>Sangwook <span class=\"accent\">Han</span>.",
-        "hero.intro": "I operate mobile services at <span class=\"hl\">40,000+ MAU</span>, contributing to stable, reliable development through test automation, architecture design, and performance optimization. I wrote <span class=\"hl\">1,350+ tests</span> to reach <span class=\"hl\">77.04%</span> business-logic coverage, and cut test execution time by <span class=\"hl\">46.4%</span> with a parallel test runner.",
-        "cta.contact": "Contact →",
-        "work.nudge.when": "2026.08 — Now",
-        "work.nudge.title": "Flutter Developer",
-        "work.nudge.desc": "Building the “Everyone's Challenge” service within Cashwalk — a nationwide healthcare app-tech service with 4.7M+ DAU.",
-        "work.snapplay.when": "2025.10 — 2026.07",
-        "work.snapplay.title": "Flutter Developer",
-        "work.snapplay.desc": "Joined as the first mobile engineer at an app-tech startup — developed and operated 3 app-tech services with a combined 40,000+ MAU, and maintained the company's shared internal libraries.",
-        "opensource.tag": "🔥 418+ downloads in 3 weeks",
-        "opensource.desc": "A Flutter bottom-sheet package with a built-in drag handle and flexible snapping.",
-        "opensource.arrow": "View on pub.dev →",
-        "hl.hack.h": "3rd place — Vibe Coding Hackathon",
-        "hl.hack.d": "Flutter Korea 2025 · project “run-fit”",
-        "hl.cp.h": "Competitive programming <span class=\"tier\">◆ Platinum V · AC 1600</span>",
-        "hl.cp.d": "Active problem solver on Baekjoon Online Judge (BOJ) · solved.ac",
-        "hl.comm.h": "Co-Founder — A&amp;I developer community",
-        "hl.comm.d": "Mentored 20+ students over 3 years",
-        "contact.email": "Email",
-        "contact.blog": "Blog",
-        "footer.copy": "© 2026 Sangwook Han",
-        "footer.built": "Built with Flutter spirit ◆",
-        "meta.title": "Sangwook Han — Flutter Developer",
-        "meta.description": "Sangwook Han (한상욱) — Flutter developer based in Seoul. First mobile engineer at Snapplay, maintaining app-tech services with 40,000+ MAU.",
-        "meta.ogLocale": "en_US"
-      },
-      ko: {
-        "brand": "한상욱",
-        "hero.h1": "👋 안녕하세요,<br><span class=\"accent\">한상욱</span>입니다.",
-        "hero.intro": "MAU <span class=\"hl\">40,000+</span> 규모의 모바일 서비스를 운영하며 테스트 자동화, 아키텍처 설계, 성능 최적화를 통해 안정적인 서비스 개발에 기여해왔습니다. <span class=\"hl\">1,350개 이상</span>의 테스트를 작성해 비즈니스 로직 커버리지 <span class=\"hl\">77.04%</span>를 달성했으며, 병렬 테스트 러너 구현으로 테스트 실행 시간을 <span class=\"hl\">46.4%</span> 개선했습니다.",
-        "cta.contact": "연락하기 →",
-        "work.nudge.when": "2026.08 — 현재",
-        "work.nudge.title": "Flutter 개발자",
-        "work.nudge.desc": "DAU 470만+의 대국민 헬스케어 앱테크 ‘캐시워크’에서 ‘모두의 챌린지’ 서비스를 개발하고 있습니다.",
-        "work.snapplay.when": "2025.10 — 2026.07",
-        "work.snapplay.title": "Flutter 개발자",
-        "work.snapplay.desc": "앱테크 스타트업의 첫 모바일 엔지니어로 합류해 합산 40,000+ MAU의 앱테크 서비스 3개를 개발·운영했으며, 사내 공통 라이브러리를 관리했습니다.",
-        "opensource.tag": "🔥 3주 만에 418+ 다운로드",
-        "opensource.desc": "드래그 핸들과 유연한 스냅 기능을 내장한 Flutter 바텀시트 패키지입니다.",
-        "opensource.arrow": "pub.dev에서 보기 →",
-        "hl.hack.h": "바이브 코딩 해커톤 3위",
-        "hl.hack.d": "Flutter Korea 2025 · 프로젝트 “run-fit”",
-        "hl.cp.h": "알고리즘 문제 해결 <span class=\"tier\">◆ Platinum V · AC 1600</span>",
-        "hl.cp.d": "백준 온라인 저지(BOJ) · solved.ac에서 꾸준히 문제 해결",
-        "hl.comm.h": "A&amp;I 개발자 커뮤니티 공동 창립자",
-        "hl.comm.d": "3년간 20명 이상의 학생 멘토링",
-        "contact.email": "이메일",
-        "contact.blog": "블로그",
-        "footer.copy": "© 2026 한상욱",
-        "footer.built": "Flutter 정신으로 제작 ◆",
-        "meta.title": "한상욱 — Flutter 개발자",
-        "meta.description": "한상욱 (Sangwook Han) — 서울에서 활동하는 Flutter 개발자. Snapplay의 첫 모바일 엔지니어로 40,000+ MAU 앱테크 서비스를 운영합니다.",
-        "meta.ogLocale": "ko_KR"
+    (function () {
+      var STORAGE_KEY = 'lang';
+      var META = {
+        ko: {
+          title: '한상욱 — Flutter Developer',
+          description: '한상욱 (Sangwook Han) — 서울에서 활동하는 Flutter 개발자. MAU 40,000+ 앱테크 서비스를 운영하며 테스트 자동화와 아키텍처 설계에 집중합니다.',
+          ogLocale: 'ko_KR'
+        },
+        en: {
+          title: 'Sangwook Han — Flutter Developer',
+          description: 'Sangwook Han (한상욱) — Flutter developer based in Seoul, operating app-tech services at 40,000+ MAU with a focus on test automation and architecture.',
+          ogLocale: 'en_US'
+        }
+      };
+
+      function setMeta(selector, value) {
+        var node = document.querySelector(selector);
+        if (node) node.setAttribute('content', value);
       }
-    };
 
-    const LANGS = ["en", "ko"];
-    const STORAGE_KEY = "lang";
+      function applyLang(lang) {
+        var m = META[lang] || META.ko;
+        document.documentElement.setAttribute('data-lang', lang);
+        document.documentElement.lang = lang;
+        document.title = m.title;
+        setMeta('meta[name="description"]', m.description);
+        setMeta('meta[property="og:title"]', m.title);
+        setMeta('meta[property="og:description"]', m.description);
+        setMeta('meta[property="og:locale"]', m.ogLocale);
 
-    function applyLang(lang) {
-      const dict = I18N[lang] || I18N.en;
+        var btn = document.getElementById('langToggle');
+        if (btn) btn.setAttribute('aria-label', lang === 'ko' ? 'Switch to English' : '한국어로 전환');
 
-      // Text / markup nodes
-      document.querySelectorAll("[data-i18n]").forEach((el) => {
-        const key = el.getAttribute("data-i18n");
-        if (dict[key] != null) el.innerHTML = dict[key];
+        try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
+      }
+
+      function initialLang() {
+        var saved = null;
+        try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+        if (saved === 'ko' || saved === 'en') return saved;
+        return (navigator.language || 'ko').toLowerCase().indexOf('en') === 0 ? 'en' : 'ko';
+      }
+
+      var current = initialLang();
+      applyLang(current);
+
+      document.getElementById('langToggle').addEventListener('click', function () {
+        current = current === 'ko' ? 'en' : 'ko';
+        applyLang(current);
       });
 
-      // <html lang>
-      document.documentElement.lang = lang;
-
-      // Head meta
-      if (dict["meta.title"]) document.title = dict["meta.title"];
-      const setMeta = (selector, value) => {
-        const node = document.querySelector(selector);
-        if (node && value != null) node.setAttribute("content", value);
-      };
-      setMeta('meta[name="description"]', dict["meta.description"]);
-      setMeta('meta[property="og:title"]', dict["meta.title"]);
-      setMeta('meta[property="og:description"]', dict["meta.description"]);
-      setMeta('meta[property="og:locale"]', dict["meta.ogLocale"]);
-
-      // Toggle button shows the OTHER language
-      const label = document.querySelector("[data-lang-label]");
-      if (label) label.textContent = lang === "ko" ? "EN" : "한국어";
-      const btn = document.getElementById("langToggle");
-      if (btn) btn.setAttribute("aria-label", lang === "ko" ? "Switch to English" : "한국어로 전환");
-
-      try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
-    }
-
-    function initialLang() {
-      let saved = null;
-      try { saved = localStorage.getItem(STORAGE_KEY); } catch (e) {}
-      if (saved && LANGS.includes(saved)) return saved;
-      const nav = (navigator.language || "en").toLowerCase();
-      return nav.startsWith("ko") ? "ko" : "en";
-    }
-
-    let current = initialLang();
-    applyLang(current);
-
-    document.getElementById("langToggle").addEventListener("click", () => {
-      current = current === "ko" ? "en" : "ko";
-      applyLang(current);
-    });
-
-    /* ---------- reveal on scroll ---------- */
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+      if ('IntersectionObserver' in window) {
+        var obs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+          });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
+      } else {
+        document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+      }
+    })();
   </script>
 </body>
 </html>
