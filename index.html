@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>한상욱 — Flutter Developer</title>
-  <meta name="description" content="한상욱 (Sangwook Han) — 서울에서 활동하는 Flutter 개발자. MAU 40,000+ 앱테크 서비스를 운영하며 테스트 자동화와 아키텍처 설계에 집중합니다." />
+  <meta name="description" content="한상욱 (Sangwook Han) — 서울에서 근무하는 1년차 모바일 엔지니어. 누적 다운로드 2,800만+ 만보기 앱테크 ‘캐시워크’에서 ‘모두의 챌린지’를 개발하며 테스트 자동화와 아키텍처 설계에 집중합니다." />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="한상욱 — Flutter Developer" />
-  <meta property="og:description" content="서울에서 활동하는 Flutter 개발자. MAU 40,000+ 앱테크 서비스를 운영하며 테스트 자동화와 아키텍처 설계에 집중합니다." />
+  <meta property="og:description" content="서울에서 근무하는 1년차 모바일 엔지니어. 누적 다운로드 2,800만+ 만보기 앱테크 ‘캐시워크’에서 ‘모두의 챌린지’를 개발하며 테스트 자동화와 아키텍처 설계에 집중합니다." />
   <meta property="og:locale" content="ko_KR" />
   <meta property="og:url" content="https://greeting.hansw.dev" />
   <link rel="canonical" href="https://greeting.hansw.dev" />
@@ -97,7 +97,18 @@
       margin-bottom: 30px;
     }
     .hero h1 .dot { color: var(--accent); }
-    .hero p { font-size: 17px; line-height: 1.82; color: var(--ink-soft); max-width: 42em; }
+    .hero p {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #302c2c;
+      max-width: 42em;
+      text-wrap: pretty;    /* 긴 문단에 적합 — 마지막 줄에 한 단어만 남는 것 방지 */
+      word-break: keep-all; /* 한국어 어절 중간에서 끊기지 않도록 */
+    }
+    /* 한 덩어리로 읽혀야 하는 구절은 줄바꿈 금지 */
+    .hero .nb { white-space: nowrap; }
+    .hero p.ko + p.ko, .hero p.en + p.en { margin-top: 16px; }
 
     /* ---------- sections ---------- */
     section { padding-bottom: 76px; }
@@ -162,6 +173,28 @@
     }
     .contact-list a:hover { color: var(--accent-deep); text-decoration-color: var(--accent-deep); }
     .cell a { color: var(--accent-deep); text-decoration-color: var(--accent); }
+
+    /* ---------- title links (left meta column) ---------- */
+    .meta h3 a {
+      text-decoration: none;
+      background-image: linear-gradient(var(--accent), var(--accent));
+      background-repeat: no-repeat;
+      background-size: 0% 1.5px;
+      background-position: 0 100%;
+      transition: background-size .22s ease, color .18s ease;
+    }
+    .meta h3 a::after {
+      content: "\2197";
+      display: inline-block;
+      margin-left: 3px;
+      font-size: .66em; font-weight: 600;
+      color: var(--gray-2);
+      vertical-align: .18em;
+      transition: color .18s ease, transform .18s ease;
+    }
+    .meta h3 a:hover { color: var(--accent-deep); background-size: 100% 1.5px; }
+    .meta h3 a:hover::after { color: var(--accent); transform: translate(1px, -1px); }
+    .meta h3 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
 
     /* ---------- footer ---------- */
     footer { border-top: 1px solid var(--line); padding: 28px 0 56px; font-size: 13px; color: var(--gray-2); }
@@ -240,16 +273,37 @@
         <span class="en">Hello,<br>I'm Sangwook Han<span class="dot">.</span></span>
       </h1>
       <p class="ko">
-        MAU <b>40,000+</b> 규모의 모바일 서비스를 운영하며 테스트 자동화, 아키텍처 설계,
-        성능 최적화를 통해 안정적인 서비스 개발에 기여해왔습니다.
-        <b>1,350개 이상</b>의 테스트를 작성해 비즈니스 로직 커버리지 <b>77.04%</b>를 달성했으며,
-        병렬 테스트 러너 구현으로 테스트 실행 시간을 <b>46.4%</b> 개선했습니다.
+        서울에서 근무하는 <span class="nb"><b>1년차 모바일 엔지니어</b>로,</span>
+        <span class="nb">누적 다운로드 <b>2,800만+</b></span>
+        <span class="nb">대국민 만보기 앱테크 <b>캐시워크</b>에서</span>
+        <span class="nb">MAU <b>100만+</b>의 서비스</span>
+        <span class="nb"><b>모두의 챌린지</b>를</span> 유지보수하고 있습니다.
+      </p>
+      <p class="ko">
+        기술적 개선을 <span class="nb"><b>제품의 성과</b>로</span> 연결해본 경험이 있습니다.
+        이전 회사에서는 <span class="nb"><b>1,350개 이상</b>의 테스트</span>를 작성해
+        핵심 기능의 <span class="nb">테스트 커버리지를 <b>77%</b>까지</span> 확보했고,
+        <span class="nb">거의 매일 발생하던 CS 문의</span>를
+        <span class="nb"><b>월 평균 10건 미만</b>으로</span> 줄였습니다.
+        <span class="nb">테스트 개수가 늘면서</span> 함께 길어지던 실행 시간은
+        병렬 처리를 적용해 <span class="nb"><b>111초에서 59초로 46.4%</b></span> 단축했고,
+        데이터 동기화 구조를 개선해
+        <span class="nb"><b>API 호출을 최대 80%</b></span> 줄이는 등
+        성능과 안정성을 수치로 개선해왔습니다.
       </p>
       <p class="en">
-        I operate mobile services at <b>40,000+ MAU</b>, contributing to stable, reliable development
-        through test automation, architecture design, and performance optimization.
-        I wrote over <b>1,350 tests</b> to reach <b>77.04%</b> business-logic coverage, and cut test
-        execution time by <b>46.4%</b> with a parallel test runner.
+        I'm a <b>mobile engineer</b> based in Seoul, one year into my career, maintaining
+        <b>Everyone's Challenge</b>, a <b>1M+ MAU</b> service inside <b>Cashwalk</b> — a nationwide
+        pedometer app-tech service with <b>28M+ cumulative downloads</b>.
+      </p>
+      <p class="en">
+        I have experience turning technical improvements into <b>product outcomes</b>.
+        At my previous company, I wrote <b>1,350+ tests</b> to secure <b>77%</b> coverage of core
+        features, cutting customer-support tickets from a near-daily occurrence to
+        <b>fewer than 10 per month</b>. As the suite grew, execution time grew with it —
+        parallelization brought it <b>from 111s to 59s, a 46.4% reduction</b>.
+        I also restructured data synchronization to reduce <b>API calls by up to 80%</b>,
+        improving performance and reliability in measurable terms.
       </p>
     </div>
   </header>
@@ -262,14 +316,14 @@
       <!-- Nudge Healthcare -->
       <div class="entry">
         <div class="meta">
-          <h3>Nudge Healthcare</h3>
+          <h3><a href="https://cashwalk.com" target="_blank" rel="noopener">Nudge Healthcare</a></h3>
           <p class="role"><span class="ko">Flutter 개발자</span><span class="en">Flutter Developer</span></p>
           <p class="date"><span class="ko">2026.08 - 현재</span><span class="en">2026.08 - Present</span></p>
         </div>
         <div class="cell">
           <p class="lead">
-            <span class="ko">DAU <b>470만+</b>의 대국민 헬스케어 앱테크 ‘캐시워크’에서 ‘모두의 챌린지’ 서비스를 개발하고 있습니다.</span>
-            <span class="en">Building the “Everyone's Challenge” service inside Cashwalk — a nationwide healthcare app-tech service with <b>4.7M+ DAU</b>.</span>
+            <span class="ko">DAU <b>470만+</b>, 누적 다운로드 <b>2,800만+</b>의 대국민 만보기 앱테크 ‘캐시워크’에서 ‘모두의 챌린지’ 서비스를 개발하며, <b>한국·일본 양국 서비스의 유지보수</b>를 함께 담당하고 있습니다.</span>
+            <span class="en">Building the “Everyone's Challenge” service inside Cashwalk — a nationwide pedometer app-tech service with <b>4.7M+ DAU</b> and <b>28M+ cumulative downloads</b> — and maintaining both its <b>Korean and Japanese</b> editions.</span>
           </p>
         </div>
       </div>
@@ -277,7 +331,7 @@
       <!-- Snapplay -->
       <div class="entry">
         <div class="meta">
-          <h3>Snapplay</h3>
+          <h3><a href="https://snapplay.io" target="_blank" rel="noopener">Snapplay</a></h3>
           <p class="role"><span class="ko">Flutter 개발자</span><span class="en">Flutter Developer</span></p>
           <p class="date">2025.10 - 2026.07</p>
         </div>
@@ -292,7 +346,7 @@
         <div class="cell mt-lg">
           <h4 class="group-title">Contribution</h4>
           <ul class="bullets ko">
-            <li>TDD 및 골든 테스트를 도입하여 <b>1,350개 테스트를 작성</b>하고 핵심 비즈니스 로직 커버리지 <b>77.04% 달성</b></li>
+            <li>TDD 및 골든 테스트를 도입하여 <b>1,350개 테스트를 작성</b>하고 핵심 비즈니스 로직 커버리지 <b>77.04% 달성</b>, 거의 매일 발생하던 CS 문의를 <b>월 평균 10건 미만으로 감소</b></li>
             <li>LPT 알고리즘 기반 병렬 테스트 러너를 구현하여 테스트 실행 시간을 <b>111초 → 59초로 46.4% 단축</b></li>
             <li>PoC 단계 레거시 코드를 <b>Clean Architecture + Bloc 기반 구조로 재설계</b>하여 확장 가능하고 유지보수 용이한 코드베이스 구축</li>
             <li>DevTools 네트워크 분석을 통해 중복 데이터 동기화 로직을 식별하고, API 최적화를 통해 <b>유스케이스별 트래픽 최대 80% 감소</b></li>
@@ -300,7 +354,7 @@
             <li>Android WorkManager 및 iOS WidgetKit 기반 홈 화면 위젯 및 백그라운드 데이터 동기화 기능 개발</li>
           </ul>
           <ul class="bullets en">
-            <li>Introduced TDD and golden tests, <b>writing 1,350 tests</b> and reaching <b>77.04% coverage</b> of core business logic</li>
+            <li>Introduced TDD and golden tests, <b>writing 1,350 tests</b> and reaching <b>77.04% coverage</b> of core business logic, cutting support tickets from near-daily to <b>fewer than 10 per month</b></li>
             <li>Implemented an LPT-based parallel test runner, cutting test execution time <b>from 111s to 59s — a 46.4% reduction</b></li>
             <li>Rebuilt PoC-stage legacy code around <b>Clean Architecture + Bloc</b>, producing a scalable and maintainable codebase</li>
             <li>Identified duplicated data-sync logic through DevTools network analysis and optimized the API layer, <b>reducing per-use-case traffic by up to 80%</b></li>
@@ -332,7 +386,7 @@
       <!-- A&I.com -->
       <div class="entry">
         <div class="meta">
-          <h3>A&amp;I.com</h3>
+          <h3><a href="https://aandiclub.com" target="_blank" rel="noopener">A&amp;I.com</a></h3>
           <p class="role">PL, Maintainer</p>
           <p class="date"><span class="ko">2025.01 - 현재</span><span class="en">2025.01 - Present</span></p>
         </div>
@@ -389,11 +443,17 @@
           </ul>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- A&I community -->
+  <!-- ============ COMMUNITY ============ -->
+  <section class="reveal" id="community">
+    <div class="wrap">
+      <h2 class="section-title">Community</h2>
+
       <div class="entry">
         <div class="meta">
-          <h3>A&amp;I</h3>
+          <h3><a href="https://aandiclub.com" target="_blank" rel="noopener">A&amp;I</a></h3>
           <p class="role">Organizer</p>
           <p class="date"><span class="ko">2024.01 - 현재</span><span class="en">2024.01 - Present</span></p>
         </div>
@@ -409,10 +469,11 @@
         </div>
       </div>
 
+
       <!-- Boostcamp -->
       <div class="entry">
         <div class="meta">
-          <h3><span class="ko">부스트캠프<br>웹/모바일 9기</span><span class="en">Boostcamp<br>Web/Mobile 9</span></h3>
+          <h3><a href="https://boostcamp.connect.or.kr/" target="_blank" rel="noopener"><span class="ko">부스트캠프<br>웹/모바일 9기</span><span class="en">Boostcamp<br>Web/Mobile 9</span></a></h3>
           <p class="role"><span class="ko">네이버 커넥트재단</span><span class="en">NAVER Connect Foundation</span></p>
           <p class="date">2024.07 - 2024.08</p>
         </div>
@@ -437,7 +498,7 @@
 
       <div class="entry">
         <div class="meta">
-          <h3><span class="ko">바이브 코딩 해커톤</span><span class="en">Vibe Coding Hackathon</span></h3>
+          <h3><a href="https://github.com/SangWook16074/runfit_flutter_vibeton" target="_blank" rel="noopener"><span class="ko">바이브 코딩 해커톤</span><span class="en">Vibe Coding Hackathon</span></a></h3>
           <p class="role">3rd, Flutter Seoul</p>
           <p class="date">2025.10.28</p>
         </div>
@@ -455,7 +516,7 @@
 
       <div class="entry">
         <div class="meta">
-          <h3>Velog</h3>
+          <h3><a href="https://velog.io/@qazws78941" target="_blank" rel="noopener">Velog</a></h3>
           <p class="role">Maintainer</p>
           <p class="date"><span class="ko">2024.01 - 현재</span><span class="en">2024.01 - Present</span></p>
         </div>
@@ -473,7 +534,7 @@
 
       <div class="entry">
         <div class="meta">
-          <h3>BaekJoon</h3>
+          <h3><a href="https://solved.ac/profile/qazws78941" target="_blank" rel="noopener">BaekJoon</a></h3>
           <p class="role">Problem Solve</p>
           <p class="date">2025.10.28</p>
         </div>
@@ -497,11 +558,11 @@
         <div class="cell">
           <ul class="bullets ko">
             <li><b>3주간 다운로드 400회 이상</b>을 기록한 Flutter 패키지 <a href="https://pub.dev/packages/grabber_sheet" target="_blank" rel="noopener">Grabber Sheet</a>를 배포했습니다.</li>
-            <li>Swift 한국어 번역 문서 Swift Book Korean에 오탈자를 발견하여 정정 기여를 했습니다.</li>
+            <li>Swift 한국어 번역 문서 <a href="https://github.com/bbiguduk/Swift_language_guide_kr" target="_blank" rel="noopener">Swift Book Korean</a>에 오탈자를 발견하여 정정 기여를 했습니다.</li>
           </ul>
           <ul class="bullets en">
             <li>Published <a href="https://pub.dev/packages/grabber_sheet" target="_blank" rel="noopener">Grabber Sheet</a>, a Flutter package that hit <b>400+ downloads in three weeks</b>.</li>
-            <li>Contributed typo corrections to Swift Book Korean, the Korean translation of the Swift book.</li>
+            <li>Contributed typo corrections to <a href="https://github.com/bbiguduk/Swift_language_guide_kr" target="_blank" rel="noopener">Swift Book Korean</a>, the Korean translation of the Swift book.</li>
           </ul>
         </div>
       </div>
@@ -514,7 +575,7 @@
       <h2 class="section-title">Education</h2>
       <div class="entry">
         <div class="meta">
-          <h3><span class="ko">인덕대학교</span><span class="en">Induk University</span></h3>
+          <h3><a href="https://www.induk.ac.kr/" target="_blank" rel="noopener"><span class="ko">인덕대학교</span><span class="en">Induk University</span></a></h3>
           <p class="date">2024.01 – 2024.12</p>
         </div>
         <div class="cell">
@@ -574,12 +635,12 @@
       var META = {
         ko: {
           title: '한상욱 — Flutter Developer',
-          description: '한상욱 (Sangwook Han) — 서울에서 활동하는 Flutter 개발자. MAU 40,000+ 앱테크 서비스를 운영하며 테스트 자동화와 아키텍처 설계에 집중합니다.',
+          description: '한상욱 (Sangwook Han) — 서울에서 근무하는 1년차 모바일 엔지니어. 누적 다운로드 2,800만+ 만보기 앱테크 ‘캐시워크’에서 ‘모두의 챌린지’를 개발하며 테스트 자동화와 아키텍처 설계에 집중합니다.',
           ogLocale: 'ko_KR'
         },
         en: {
           title: 'Sangwook Han — Flutter Developer',
-          description: 'Sangwook Han (한상욱) — Flutter developer based in Seoul, operating app-tech services at 40,000+ MAU with a focus on test automation and architecture.',
+          description: 'Sangwook Han (한상욱) — Mobile engineer based in Seoul, building \u2018Everyone\u2019s Challenge\u2019 inside Cashwalk (28M+ downloads) with a focus on test automation and architecture.',
           ogLocale: 'en_US'
         }
       };
