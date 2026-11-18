@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>한상욱 — Flutter Developer</title>
-  <meta name="description" content="한상욱 (Sangwook Han) — 서울에서 근무하는 1년차 모바일 엔지니어. 누적 다운로드 2,800만+ 만보기 앱테크 ‘캐시워크’에서 ‘모두의 챌린지’를 개발하며 테스트 자동화와 아키텍처 설계에 집중합니다." />
+  <title>한상욱 | Flutter Developer</title>
+  <meta name="description" content="한상욱 (Sangwook Han). 서울에서 근무하는 1년차 모바일 엔지니어. 누적 다운로드 2,800만+ 만보기 앱테크 ‘캐시워크’에서 ‘모두의 챌린지’를 개발하며 테스트 자동화와 아키텍처 설계에 집중합니다." />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="한상욱 — Flutter Developer" />
+  <meta property="og:title" content="한상욱 | Flutter Developer" />
   <meta property="og:description" content="서울에서 근무하는 1년차 모바일 엔지니어. 누적 다운로드 2,800만+ 만보기 앱테크 ‘캐시워크’에서 ‘모두의 챌린지’를 개발하며 테스트 자동화와 아키텍처 설계에 집중합니다." />
   <meta property="og:locale" content="ko_KR" />
   <meta property="og:url" content="https://greeting.hansw.dev" />
@@ -135,17 +135,21 @@
     .entry + .entry { margin-top: 56px; }
 
     .meta h3 { font-size: 17px; font-weight: 700; letter-spacing: -.02em; line-height: 1.42; margin-bottom: 4px; }
-    .meta .role { font-size: 14.5px; color: var(--gray); line-height: 1.5; }
+    .meta .role { font-size: 14.5px; color: var(--ink); line-height: 1.5; }
     .meta .date {
-      font-size: 12.5px; color: var(--gray-2); letter-spacing: .01em;
+      font-size: 12.5px; color: var(--ink); letter-spacing: .01em;
       margin-top: 6px; font-variant-numeric: tabular-nums;
     }
 
-    /* left-column label for one bullet group */
-    .sub-label { font-size: 15px; font-weight: 700; letter-spacing: -.015em; color: var(--accent-deep); }
+    /* title for one bullet group (right column) */
+    .sub-title { font-size: 15px; font-weight: 700; letter-spacing: -.015em; color: var(--ink); margin-bottom: 6px; }
 
     /* right-column blocks */
     .lead { color: var(--ink-soft); }
+    /* left-column label for one bullet group */
+    .sub-label { font-size: 15px; font-weight: 700; letter-spacing: -.015em; color: var(--ink); }
+    /* left-column label for a block (e.g. Contribution) */
+    .side-label { font-size: 17px; font-weight: 700; letter-spacing: -.02em; line-height: 1.42; color: var(--ink); }
     .group-title { font-size: 17px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 10px; }
     .cell { min-width: 0; }
 
@@ -161,6 +165,8 @@
       content: ""; position: absolute; left: 2px; top: .72em;
       width: 3px; height: 3px; border-radius: 50%; background: var(--accent);
     }
+    /* nested bullets: one per PR / detail under a parent item */
+    .bullets .bullets { margin-top: 7px; margin-left: -15px; }
 
     /* ---------- contact ---------- */
     .contact-list a {
@@ -215,6 +221,7 @@
       .entry .meta { margin-bottom: 18px; }
       .entry .spacer { display: none; }
       .sub-label { margin-top: 20px; margin-bottom: 8px; }
+      .side-label { margin-bottom: 4px; }
       .entry + .entry { margin-top: 44px; }
       .mt-lg { margin-top: 24px; }
       .section-title { padding-top: 16px; }
@@ -293,14 +300,14 @@
       </p>
       <p class="en">
         I'm a <b>mobile engineer</b> based in Seoul, one year into my career, maintaining
-        <b>Everyone's Challenge</b>, a <b>1M+ MAU</b> service inside <b>Cashwalk</b> — a nationwide
+        <b>Everyone's Challenge</b>, a <b>1M+ MAU</b> service inside <b>Cashwalk</b>, a nationwide
         pedometer app-tech service with <b>28M+ cumulative downloads</b>.
       </p>
       <p class="en">
         I have experience turning technical improvements into <b>product outcomes</b>.
         At my previous company, I wrote <b>1,350+ tests</b> to secure <b>77%</b> coverage of core
         features, cutting customer-support tickets from a near-daily occurrence to
-        <b>fewer than 10 per month</b>. As the suite grew, execution time grew with it —
+        <b>fewer than 10 per month</b>. As the suite grew, so did execution time, and
         parallelization brought it <b>from 111s to 59s, a 46.4% reduction</b>.
         I also restructured data synchronization to reduce <b>API calls by up to 80%</b>,
         improving performance and reliability in measurable terms.
@@ -317,14 +324,69 @@
       <div class="entry">
         <div class="meta">
           <h3><a href="https://cashwalk.com" target="_blank" rel="noopener">Nudge Healthcare</a></h3>
-          <p class="role"><span class="ko">Flutter 개발자</span><span class="en">Flutter Developer</span></p>
-          <p class="date"><span class="ko">2026.08 - 현재</span><span class="en">2026.08 - Present</span></p>
+          <p class="role">Flutter Developer</p>
+          <p class="date"><span class="ko">2026.08 ~ 현재</span><span class="en">2026.08 ~ Present</span></p>
         </div>
         <div class="cell">
           <p class="lead">
             <span class="ko">DAU <b>470만+</b>, 누적 다운로드 <b>2,800만+</b>의 대국민 만보기 앱테크 ‘캐시워크’에서 ‘모두의 챌린지’ 서비스를 개발하며, <b>한국·일본 양국 서비스의 유지보수</b>를 함께 담당하고 있습니다.</span>
-            <span class="en">Building the “Everyone's Challenge” service inside Cashwalk — a nationwide pedometer app-tech service with <b>4.7M+ DAU</b> and <b>28M+ cumulative downloads</b> — and maintaining both its <b>Korean and Japanese</b> editions.</span>
+            <span class="en">Building the “Everyone's Challenge” service inside Cashwalk, a nationwide pedometer app-tech service with <b>4.7M+ DAU</b> and <b>28M+ cumulative downloads</b>, while maintaining both its <b>Korean and Japanese</b> editions.</span>
           </p>
+        </div>
+
+        <div class="side-label mt-lg">Contribution</div>
+        <div class="cell mt-lg">
+          <h5 class="sub-title"><span class="ko">연속 출석 보상(3일·7일) 기능 개발</span><span class="en">Developed consecutive attendance rewards for 3 and 7 day streaks</span></h5>
+          <ul class="bullets ko">
+            <li>출시 11주간 <b>누적 215만 건, 3,130만 P</b> 보상 지급</li>
+            <li>매주 <b>10.5만~11만 명</b>이 참여하는 핵심 기능으로 정착</li>
+            <li>3일 연속 출석 달성자의 <b>57%가 7일 연속까지 유지</b></li>
+          </ul>
+          <ul class="bullets en">
+            <li><b>2.15M payouts and 31.3M points</b> distributed over 11 weeks</li>
+            <li>Settled in as a core feature with <b>105K to 110K participants every week</b></li>
+            <li><b>57% of 3 day streak achievers</b> continued on to a 7 day streak</li>
+          </ul>
+        </div>
+
+        <div class="spacer"></div>
+        <div class="cell mt-md">
+          <h5 class="sub-title"><span class="ko">2단계 마일스톤 보상 구조 개발</span><span class="en">Developed a two tier milestone reward structure</span></h5>
+          <ul class="bullets ko">
+            <li>출시 7주간 <b>누적 54.8만 건, 831만 P</b> 보상 지급, 누적 <b>7.5만 명</b>이 미션 보상 달성</li>
+            <li>매주 <b>약 7만 명</b>이 참여하는 미션으로 정착</li>
+            <li>출시 7주 만에 1단계 달성자 <b>23% 증가(5.6만 → 7.0만 명)</b>, 2단계 보상 도입 후 2단계 달성자 <b>53% 증가(7,024 → 10,782명)</b></li>
+            <li>1단계에서 2단계로 넘어가는 전환율 <b>10.6% → 15.6%(+5%p)</b></li>
+          </ul>
+          <ul class="bullets en">
+            <li><b>548K payouts and 8.31M points</b> over 7 weeks, with <b>75K users</b> earning mission rewards</li>
+            <li>Settled in as a mission with <b>about 70K participants every week</b></li>
+            <li>Within 7 weeks, tier 1 achievers <b>grew 23% (56K → 70K)</b>, and tier 2 achievers <b>grew 53% (7,024 → 10,782)</b> after tier 2 rewards were introduced</li>
+            <li>Tier 1 to tier 2 conversion rose <b>from 10.6% to 15.6% (+5%p)</b></li>
+          </ul>
+        </div>
+
+        <div class="spacer"></div>
+        <div class="cell mt-md">
+          <h5 class="sub-title"><span class="ko">공통 기여</span><span class="en">Team Wide Contributions</span></h5>
+          <ul class="bullets ko">
+            <li>팀 내 지식 공유를 위한 <b>엔지니어링 문서 작성</b></li>
+            <li>레거시 <b>AI 스킬 최신화</b></li>
+          </ul>
+          <ul class="bullets en">
+            <li>Wrote <b>engineering documents</b> to share knowledge across the team</li>
+            <li>Updated legacy <b>AI skills</b> to current standards</li>
+          </ul>
+        </div>
+
+
+        <div class="spacer"></div>
+        <div class="cell mt-lg">
+          <h4 class="group-title">Skills</h4>
+          <ul class="bullets">
+            <li>Flutter, Dart</li>
+            <li>Riverpod, GetX</li>
+          </ul>
         </div>
       </div>
 
@@ -332,34 +394,43 @@
       <div class="entry">
         <div class="meta">
           <h3><a href="https://snapplay.io" target="_blank" rel="noopener">Snapplay</a></h3>
-          <p class="role"><span class="ko">Flutter 개발자</span><span class="en">Flutter Developer</span></p>
-          <p class="date">2025.10 - 2026.07</p>
+          <p class="role">Flutter Developer</p>
+          <p class="date">2025.10 ~ 2026.07</p>
         </div>
         <div class="cell">
           <p class="lead">
             <span class="ko"><b>2년차</b> 앱테크 스타트업의 <b>첫 모바일 엔지니어</b>로 합류하여 MAU <b>40,000+</b> 규모의 앱테크 서비스 개발 및 운영, 공통 라이브러리 유지보수를 담당했습니다.</span>
-            <span class="en">Joined a <b>two-year-old</b> app-tech startup as its <b>first mobile engineer</b>, owning the development and operation of services with <b>40,000+ MAU</b> and maintaining the shared internal libraries.</span>
+            <span class="en">Joined a <b>two year old</b> app-tech startup as its <b>first mobile engineer</b>, owning the development and operation of services with <b>40,000+ MAU</b> and maintaining the shared internal libraries.</span>
           </p>
         </div>
 
-        <div class="spacer"></div>
+        <div class="side-label mt-lg">Contribution</div>
         <div class="cell mt-lg">
-          <h4 class="group-title">Contribution</h4>
+          <h5 class="sub-title"><span class="ko">AI 기반 개발 환경 및 테스트 자동화 구축</span><span class="en">AI Driven Development Environment and Test Automation</span></h5>
           <ul class="bullets ko">
-            <li>TDD 및 골든 테스트를 도입하여 <b>1,350개 테스트를 작성</b>하고 핵심 비즈니스 로직 커버리지 <b>77.04% 달성</b>, 거의 매일 발생하던 CS 문의를 <b>월 평균 10건 미만으로 감소</b></li>
+            <li><b>Harness Engineering 기반 개발 환경</b>과 AI 구현·리팩터링 워크플로우를 도입하여, 소수 인력으로 다수의 요구사항에 대응하면서 AI 생성 코드의 일관성 확보</li>
+            <li>생성형 AI와 TDD를 결합한 테스트 자동화로 <b>3개월간 1,350개 이상의 단위 테스트 작성 및 핵심 비즈니스 로직 커버리지 77.04% 달성</b>, 거의 매일 발생하던 CS 문의를 <b>월 평균 10건 미만으로 감소</b></li>
             <li>LPT 알고리즘 기반 병렬 테스트 러너를 구현하여 테스트 실행 시간을 <b>111초 → 59초로 46.4% 단축</b></li>
-            <li>PoC 단계 레거시 코드를 <b>Clean Architecture + Bloc 기반 구조로 재설계</b>하여 확장 가능하고 유지보수 용이한 코드베이스 구축</li>
-            <li>DevTools 네트워크 분석을 통해 중복 데이터 동기화 로직을 식별하고, API 최적화를 통해 <b>유스케이스별 트래픽 최대 80% 감소</b></li>
-            <li>Firebase Crashlytics 기반 통합 에러 모니터링 체계를 구축하여 <b>앱에서 발생하는 모든 런타임 예외를 수집·분석할 수 있도록 개선</b></li>
-            <li>Android WorkManager 및 iOS WidgetKit 기반 홈 화면 위젯 및 백그라운드 데이터 동기화 기능 개발</li>
+            <li>Flutter Method Channel과 Android WorkManager·iOS WidgetKit 기반 <b>홈 화면 위젯 및 백그라운드 데이터 동기화</b> 개발 및 출시</li>
           </ul>
           <ul class="bullets en">
-            <li>Introduced TDD and golden tests, <b>writing 1,350 tests</b> and reaching <b>77.04% coverage</b> of core business logic, cutting support tickets from near-daily to <b>fewer than 10 per month</b></li>
-            <li>Implemented an LPT-based parallel test runner, cutting test execution time <b>from 111s to 59s — a 46.4% reduction</b></li>
-            <li>Rebuilt PoC-stage legacy code around <b>Clean Architecture + Bloc</b>, producing a scalable and maintainable codebase</li>
-            <li>Identified duplicated data-sync logic through DevTools network analysis and optimized the API layer, <b>reducing per-use-case traffic by up to 80%</b></li>
-            <li>Built unified error monitoring on Firebase Crashlytics so that <b>every runtime exception in the app is collected and analyzed</b></li>
-            <li>Developed home-screen widgets and background data sync with Android WorkManager and iOS WidgetKit</li>
+            <li>Introduced a <b>harness engineering based development environment</b> and AI assisted implementation and refactoring workflows, letting a small team handle many requirements while keeping AI generated code consistent</li>
+            <li>Combined generative AI with TDD, <b>writing 1,350+ unit tests in three months and reaching 77.04% coverage</b> of core business logic, cutting support tickets from near daily to <b>fewer than 10 per month</b></li>
+            <li>Implemented an LPT based parallel test runner, cutting test execution time <b>from 111s to 59s, a 46.4% reduction</b></li>
+            <li>Built and shipped <b>home screen widgets and background data sync</b> with Flutter Method Channel, Android WorkManager, and iOS WidgetKit</li>
+          </ul>
+        </div>
+
+        <div class="spacer"></div>
+        <div class="cell mt-md">
+          <h5 class="sub-title"><span class="ko">레거시 아키텍처 재설계 및 성능 개선</span><span class="en">Legacy Architecture Redesign and Performance Tuning</span></h5>
+          <ul class="bullets ko">
+            <li>PoC 단계 레거시 코드를 <b>Clean Architecture + Bloc 기반 구조로 재설계</b>하고, Firebase Crashlytics 기반 통합 에러 모니터링 체계 구축</li>
+            <li>DevTools 네트워크 분석을 통해 중복 데이터 동기화 로직을 식별하고, API 최적화를 통해 <b>유스케이스별 트래픽 최대 80% 감소</b></li>
+          </ul>
+          <ul class="bullets en">
+            <li>Rebuilt PoC stage legacy code around <b>Clean Architecture + Bloc</b> and set up unified error monitoring on Firebase Crashlytics</li>
+            <li>Identified duplicated data sync logic through DevTools network analysis and optimized the API layer, <b>reducing per use case traffic by up to 80%</b></li>
           </ul>
         </div>
 
@@ -388,20 +459,18 @@
         <div class="meta">
           <h3><a href="https://aandiclub.com" target="_blank" rel="noopener">A&amp;I.com</a></h3>
           <p class="role">PL, Maintainer</p>
-          <p class="date"><span class="ko">2025.01 - 현재</span><span class="en">2025.01 - Present</span></p>
+          <p class="date"><span class="ko">2025.01 ~ 현재</span><span class="en">2025.01 ~ Present</span></p>
         </div>
         <div class="cell">
           <p class="lead">
             <span class="ko">약 <b>1년 6개월째</b> 운영 중인 A&amp;I 온라인 서비스 프로젝트에서 <b>팀 리드</b>를 맡아 Flutter Web 기반 프론트엔드 및 CMS의 설계·개발·운영을 담당하고 있습니다.</span>
-            <span class="en"><b>Team lead</b> on the A&amp;I online service, now running for about <b>a year and a half</b> — responsible for the design, development, and operation of the Flutter Web frontend and the CMS.</span>
+            <span class="en"><b>Team lead</b> on the A&amp;I online service, now running for about <b>a year and a half</b>, responsible for the design, development, and operation of the Flutter Web frontend and the CMS.</span>
           </p>
         </div>
 
-        <div class="spacer"></div>
-        <div class="cell mt-lg"><h4 class="group-title" style="margin-bottom:0">Contribution</h4></div>
-
-        <div class="sub-label mt-md">Team Lead</div>
-        <div class="cell mt-md">
+        <div class="side-label mt-lg">Contribution</div>
+        <div class="cell mt-lg">
+          <h5 class="sub-title">Team Lead</h5>
           <ul class="bullets ko">
             <li>기능 우선순위 기반 스프린트로 <b>MVP 개발 기간을 30일 → 10일로 단축</b></li>
             <li>팀 규모 증가로 발생한 배포 충돌과 기능 간 의존성 문제를 해결하기 위해 Melos 기반 멀티패키지 아키텍처를 설계·적용하여 <b>5개 내부 패키지, 58,000여 줄 규모의 코드베이스를 기능별 독립 구조로 전환</b></li>
@@ -412,8 +481,9 @@
           </ul>
         </div>
 
-        <div class="sub-label mt-md">Frontend</div>
+        <div class="spacer"></div>
         <div class="cell mt-md">
+          <h5 class="sub-title">Frontend</h5>
           <ul class="bullets ko">
             <li>Flutter Web 기반 UI/UX 설계 및 개발</li>
             <li>SSE 기반 실시간 채점 결과 스트리밍 UX 구현</li>
@@ -425,7 +495,7 @@
           <ul class="bullets en">
             <li>Designed and built the Flutter Web UI/UX</li>
             <li>Implemented a real-time grading-result streaming UX over SSE</li>
-            <li>Designed one coherent auth flow — automatic JWT refresh, request retries, and global logout — through a Dio interceptor</li>
+            <li>Designed one coherent auth flow through a Dio interceptor, covering automatic JWT refresh, request retries, and global logout</li>
             <li><b>Automated pre-release quality checks with a CI suite of 230+ automated tests</b></li>
             <li>Built CI/CD on GitHub Actions + Firebase Hosting that deploys to production or QA on a push to main or a tag</li>
             <li><b>Solved the caching problem in Flutter Web deployments</b> so that <b>the latest version is served immediately after release</b></li>
@@ -437,9 +507,109 @@
           <h4 class="group-title">Skills</h4>
           <ul class="bullets">
             <li>Flutter, Dart</li>
-            <li>Riverpods, Retrofit, Dio</li>
+            <li>Riverpod, Retrofit, Dio</li>
             <li>TypeScript, Vite</li>
             <li>GitHub Actions, Docker, Firebase</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal" id="conferences">
+    <div class="wrap">
+      <h2 class="section-title">Conferences</h2>
+
+      <div class="entry">
+        <div class="meta">
+          <h3><a href="https://ticketa.co/event/c9xsstcs" target="_blank" rel="noopener">Flutter Korea 2026</a></h3>
+          <p class="role">Speaker, AI Track</p>
+          <p class="date">2026.11.07</p>
+        </div>
+        <div class="cell">
+          <ul class="bullets ko">
+            <li>Flutter Seoul이 주최한 국내 Flutter 컨퍼런스 Flutter Korea 2026에서 <b>「AI와 함께 스타트업에서 생존하기」</b>를 주제로 <b>30분 발표 및 Q&amp;A</b>를 진행했습니다. <a href="https://blog.hansw.dev/9" target="_blank" rel="noopener">발표 회고</a></li>
+          </ul>
+          <ul class="bullets en">
+            <li>Gave a <b>30 minute talk with Q&amp;A</b> titled <b>“Surviving at a Startup with AI”</b> at Flutter Korea 2026, the Korean Flutter conference hosted by Flutter Seoul. <a href="https://blog.hansw.dev/9" target="_blank" rel="noopener">Retrospective (Korean)</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal" id="opensource">
+    <div class="wrap">
+      <h2 class="section-title">Open Source</h2>
+
+      <div class="entry">
+        <div class="meta">
+          <h3><a href="https://github.com/pulls?q=is%3Apr+author%3ASangWook16074+org%3Aflutter+is%3Amerged" target="_blank" rel="noopener">Flutter</a></h3>
+          <p class="role">Contributor</p>
+          <p class="date"><span class="ko">2026.11 ~ 현재</span><span class="en">2026.11 ~ Present</span></p>
+        </div>
+        <div class="cell">
+          <ul class="bullets ko">
+            <li><b>Material·Cupertino UI 독립 패키지 분리</b>에 기여했습니다.
+              <ul class="bullets">
+                <li>Flutter 공식 패키지 material_ui, cupertino_ui의 다국어 지원(Localization) 관련 문서 구조를 개선 및 변경했습니다. (<a href="https://github.com/flutter/packages/pull/13109" target="_blank" rel="noopener">PR #13109</a>)</li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="bullets en">
+            <li>Contributed to <b>splitting Material and Cupertino UI into standalone packages</b>.
+              <ul class="bullets">
+                <li>Restructured and updated the localization documentation of the official Flutter packages material_ui and cupertino_ui. (<a href="https://github.com/flutter/packages/pull/13109" target="_blank" rel="noopener">PR #13109</a>)</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="meta">
+          <h3><a href="https://pub.dev/packages/grabber_sheet" target="_blank" rel="noopener">Grabber Sheet</a></h3>
+          <p class="role">Maintainer</p>
+          <p class="date"><span class="ko">2025.11 ~ 현재</span><span class="en">2025.11 ~ Present</span></p>
+        </div>
+        <div class="cell">
+          <ul class="bullets ko">
+            <li><b>3주간 다운로드 400회 이상</b>을 기록한 Flutter 패키지 Grabber Sheet를 배포했습니다.
+              <ul class="bullets">
+                <li>Flutter 기본 위젯의 커스터마이징 한계를 해결하기 위해 재사용 가능한 UI 컴포넌트 패키지를 개발 및 배포했습니다.</li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="bullets en">
+            <li>Published Grabber Sheet, a Flutter package that hit <b>400+ downloads in three weeks</b>.
+              <ul class="bullets">
+                <li>Built and published a reusable UI component package to overcome the customization limits of Flutter's built-in widgets.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="meta">
+          <h3><a href="https://github.com/bbiguduk/swift-book-korean" target="_blank" rel="noopener">Swift Book Korean</a></h3>
+          <p class="role">Contributor</p>
+          <p class="date">2026.01</p>
+        </div>
+        <div class="cell">
+          <ul class="bullets ko">
+            <li>Swift 공식 문서 <b>한국어 번역 프로젝트</b>에 기여했습니다.
+              <ul class="bullets">
+                <li>번역 문서의 한국어 오탈자를 수정했습니다. (<a href="https://github.com/bbiguduk/swift-book-korean/pull/2" target="_blank" rel="noopener">PR #2</a>)</li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="bullets en">
+            <li>Contributed to the <b>Korean translation of the official Swift book</b>.
+              <ul class="bullets">
+                <li>Fixed Korean typos in the translated docs. (<a href="https://github.com/bbiguduk/swift-book-korean/pull/2" target="_blank" rel="noopener">PR #2</a>)</li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>
@@ -455,7 +625,7 @@
         <div class="meta">
           <h3><a href="https://aandiclub.com" target="_blank" rel="noopener">A&amp;I</a></h3>
           <p class="role">Organizer</p>
-          <p class="date"><span class="ko">2024.01 - 현재</span><span class="en">2024.01 - Present</span></p>
+          <p class="date"><span class="ko">2024.01 ~ 현재</span><span class="en">2024.01 ~ Present</span></p>
         </div>
         <div class="cell">
           <ul class="bullets ko">
@@ -475,7 +645,7 @@
         <div class="meta">
           <h3><a href="https://boostcamp.connect.or.kr/" target="_blank" rel="noopener"><span class="ko">부스트캠프<br>웹/모바일 9기</span><span class="en">Boostcamp<br>Web/Mobile 9</span></a></h3>
           <p class="role"><span class="ko">네이버 커넥트재단</span><span class="en">NAVER Connect Foundation</span></p>
-          <p class="date">2024.07 - 2024.08</p>
+          <p class="date">2024.07 ~ 2024.08</p>
         </div>
         <div class="cell">
           <ul class="bullets ko">
@@ -483,7 +653,7 @@
             <li>최고의 동료들과 코드 리뷰, 짝 프로그래밍 등 다양한 활동으로 <b>협업역량을 키웠습니다.</b></li>
           </ul>
           <ul class="bullets en">
-            <li>Learned core CS concepts — <b>operating systems, memory layout, compilers, multithreading</b> — by implementing them directly in online missions.</li>
+            <li>Learned core CS concepts such as <b>operating systems, memory layout, compilers, multithreading</b> by implementing them directly in online missions.</li>
             <li><b>Sharpened my collaboration skills</b> through code review, pair programming, and other work with outstanding peers.</li>
           </ul>
         </div>
@@ -508,7 +678,7 @@
             <li><b>90분 동안 프로덕션 수준의 헬스케어 앱 Run-Fit을 완성</b>하고 <b>3위를 수상</b>했습니다.</li>
           </ul>
           <ul class="bullets en">
-            <li>Drove the whole process — from requirements to implementation — <b>entirely in natural language</b> with Gemini CLI and Cursor AI.</li>
+            <li>Drove the whole process from requirements to implementation <b>entirely in natural language</b> with Gemini CLI and Cursor AI.</li>
             <li><b>Shipped Run-Fit, a production-grade healthcare app, in 90 minutes</b> and <b>placed 3rd</b>.</li>
           </ul>
         </div>
@@ -518,7 +688,7 @@
         <div class="meta">
           <h3><a href="https://velog.io/@qazws78941" target="_blank" rel="noopener">Velog</a></h3>
           <p class="role">Maintainer</p>
-          <p class="date"><span class="ko">2024.01 - 현재</span><span class="en">2024.01 - Present</span></p>
+          <p class="date"><span class="ko">2024.01 ~ 현재</span><span class="en">2024.01 ~ Present</span></p>
         </div>
         <div class="cell">
           <ul class="bullets ko">
@@ -526,7 +696,7 @@
             <li><b>280개 이상의 글을 작성</b>하고, 누적 조회수 <b>100,000회 이상</b>을 달성했습니다.</li>
           </ul>
           <ul class="bullets en">
-            <li>Have written consistently on Velog <b>for three years</b> — troubleshooting notes, study logs, and retrospectives.</li>
+            <li>Have written consistently on Velog <b>for three years</b>: troubleshooting notes, study logs, and retrospectives.</li>
             <li><b>Published 280+ posts</b> and reached <b>100,000+ cumulative views</b>.</li>
           </ul>
         </div>
@@ -550,22 +720,6 @@
         </div>
       </div>
 
-      <div class="entry">
-        <div class="meta">
-          <h3>Opensources</h3>
-          <p class="role">Contributor / Maintainer</p>
-        </div>
-        <div class="cell">
-          <ul class="bullets ko">
-            <li><b>3주간 다운로드 400회 이상</b>을 기록한 Flutter 패키지 <a href="https://pub.dev/packages/grabber_sheet" target="_blank" rel="noopener">Grabber Sheet</a>를 배포했습니다.</li>
-            <li>Swift 한국어 번역 문서 <a href="https://github.com/bbiguduk/Swift_language_guide_kr" target="_blank" rel="noopener">Swift Book Korean</a>에 오탈자를 발견하여 정정 기여를 했습니다.</li>
-          </ul>
-          <ul class="bullets en">
-            <li>Published <a href="https://pub.dev/packages/grabber_sheet" target="_blank" rel="noopener">Grabber Sheet</a>, a Flutter package that hit <b>400+ downloads in three weeks</b>.</li>
-            <li>Contributed typo corrections to <a href="https://github.com/bbiguduk/Swift_language_guide_kr" target="_blank" rel="noopener">Swift Book Korean</a>, the Korean translation of the Swift book.</li>
-          </ul>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -576,7 +730,7 @@
       <div class="entry">
         <div class="meta">
           <h3><a href="https://www.induk.ac.kr/" target="_blank" rel="noopener"><span class="ko">인덕대학교</span><span class="en">Induk University</span></a></h3>
-          <p class="date">2024.01 – 2024.12</p>
+          <p class="date">2024.01 ~ 2024.12</p>
         </div>
         <div class="cell">
           <ul class="bullets ko">
@@ -634,13 +788,13 @@
       var STORAGE_KEY = 'lang';
       var META = {
         ko: {
-          title: '한상욱 — Flutter Developer',
-          description: '한상욱 (Sangwook Han) — 서울에서 근무하는 1년차 모바일 엔지니어. 누적 다운로드 2,800만+ 만보기 앱테크 ‘캐시워크’에서 ‘모두의 챌린지’를 개발하며 테스트 자동화와 아키텍처 설계에 집중합니다.',
+          title: '한상욱 | Flutter Developer',
+          description: '한상욱 (Sangwook Han). 서울에서 근무하는 1년차 모바일 엔지니어. 누적 다운로드 2,800만+ 만보기 앱테크 ‘캐시워크’에서 ‘모두의 챌린지’를 개발하며 테스트 자동화와 아키텍처 설계에 집중합니다.',
           ogLocale: 'ko_KR'
         },
         en: {
-          title: 'Sangwook Han — Flutter Developer',
-          description: 'Sangwook Han (한상욱) — Mobile engineer based in Seoul, building \u2018Everyone\u2019s Challenge\u2019 inside Cashwalk (28M+ downloads) with a focus on test automation and architecture.',
+          title: 'Sangwook Han | Flutter Developer',
+          description: 'Sangwook Han (한상욱). Mobile engineer based in Seoul, building \u2018Everyone\u2019s Challenge\u2019 inside Cashwalk (28M+ downloads) with a focus on test automation and architecture.',
           ogLocale: 'en_US'
         }
       };
