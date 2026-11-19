@@ -368,6 +368,19 @@
 
         <div class="spacer"></div>
         <div class="cell mt-md">
+          <h5 class="sub-title"><span class="ko">Lottie 없이 순수 Dart 코드로 보상 애니메이션 구현</span><span class="en">Built reward animations in pure Dart code without Lottie</span></h5>
+          <ul class="bullets ko">
+            <li>서버 응답 값에 따라 달라지는 보상 애니메이션이 필요했으나 정적 Lottie 에셋으로는 구현할 수 없어,<br><b>Figma MCP로 정의된 애니메이션을 순수 Dart 코드로 정확히 구현</b></li>
+            <li>구현 과정을 <b>스킬로 만들어 사내 기술 문서로 정리</b>하여,<br>팀원 누구나 <b>동일한 품질의 애니메이션을 재현</b>할 수 있도록 팀에 제공</li>
+          </ul>
+          <ul class="bullets en">
+            <li>The reward animation had to change with server response values, which static Lottie assets could not handle,<br>so I <b>precisely implemented the animation defined via Figma MCP in pure Dart code</b></li>
+            <li>Turned the process into a <b>reusable skill documented in the internal tech docs</b> and provided it to the team,<br>so anyone can <b>reproduce the same quality of animation</b></li>
+          </ul>
+        </div>
+
+        <div class="spacer"></div>
+        <div class="cell mt-md">
           <h5 class="sub-title"><span class="ko">공통 기여</span><span class="en">Team Wide Contributions</span></h5>
           <ul class="bullets ko">
             <li>팀 내 지식 공유를 위한 <b>엔지니어링 문서 작성</b></li>
@@ -408,15 +421,15 @@
         <div class="cell mt-lg">
           <h5 class="sub-title"><span class="ko">AI 기반 개발 환경 및 테스트 자동화 구축</span><span class="en">AI Driven Development Environment and Test Automation</span></h5>
           <ul class="bullets ko">
-            <li><b>Harness Engineering 기반 개발 환경</b>과 AI 구현·리팩터링 워크플로우를 도입하여, 소수 인력으로 다수의 요구사항에 대응하면서 AI 생성 코드의 일관성 확보</li>
-            <li>생성형 AI와 TDD를 결합한 테스트 자동화로 <b>3개월간 1,350개 이상의 단위 테스트 작성 및 핵심 비즈니스 로직 커버리지 77.04% 달성</b>, 거의 매일 발생하던 CS 문의를 <b>월 평균 10건 미만으로 감소</b></li>
-            <li>LPT 알고리즘 기반 병렬 테스트 러너를 구현하여 테스트 실행 시간을 <b>111초 → 59초로 46.4% 단축</b></li>
+            <li>소수 인력으로 다수의 요구사항에 대응하고 코드 품질을 통일하기 위해,<br><b>Harness Engineering 기반 개발 환경</b>과 AI 구현·리팩터링 워크플로우를 도입하여<br><b>AI 생성 코드의 일관성 확보</b></li>
+            <li>생성형 AI와 TDD를 결합한 테스트 자동화로 <b>3개월간 1,350개 이상의 단위 테스트 작성 및 핵심 비즈니스 로직 커버리지 77.04% 달성</b>,<br>거의 매일 발생하던 CS 문의를 <b>월 평균 10건 미만으로 감소</b></li>
+            <li>LPT 알고리즘 기반 병렬 테스트 러너를 구현하여<br>테스트 실행 시간을 <b>111초 → 59초로 46.4% 단축</b></li>
             <li>Flutter Method Channel과 Android WorkManager·iOS WidgetKit 기반 <b>홈 화면 위젯 및 백그라운드 데이터 동기화</b> 개발 및 출시</li>
           </ul>
           <ul class="bullets en">
-            <li>Introduced a <b>harness engineering based development environment</b> and AI assisted implementation and refactoring workflows, letting a small team handle many requirements while keeping AI generated code consistent</li>
-            <li>Combined generative AI with TDD, <b>writing 1,350+ unit tests in three months and reaching 77.04% coverage</b> of core business logic, cutting support tickets from near daily to <b>fewer than 10 per month</b></li>
-            <li>Implemented an LPT based parallel test runner, cutting test execution time <b>from 111s to 59s, a 46.4% reduction</b></li>
+            <li>To handle many requirements with a small team and unify code quality,<br>I introduced a <b>harness engineering based development environment</b> and AI assisted implementation and refactoring workflows<br>to <b>keep AI generated code consistent</b></li>
+            <li>Combined generative AI with TDD, <b>writing 1,350+ unit tests in three months and reaching 77.04% coverage</b> of core business logic,<br>cutting support tickets from near daily to <b>fewer than 10 per month</b></li>
+            <li>Implemented an LPT based parallel test runner,<br>cutting test execution time <b>from 111s to 59s, a 46.4% reduction</b></li>
             <li>Built and shipped <b>home screen widgets and background data sync</b> with Flutter Method Channel, Android WorkManager, and iOS WidgetKit</li>
           </ul>
         </div>
@@ -425,12 +438,14 @@
         <div class="cell mt-md">
           <h5 class="sub-title"><span class="ko">레거시 아키텍처 재설계 및 성능 개선</span><span class="en">Legacy Architecture Redesign and Performance Tuning</span></h5>
           <ul class="bullets ko">
-            <li>PoC 단계 레거시 코드를 <b>Clean Architecture + Bloc 기반 구조로 재설계</b>하고, Firebase Crashlytics 기반 통합 에러 모니터링 체계 구축</li>
-            <li>DevTools 네트워크 분석을 통해 중복 데이터 동기화 로직을 식별하고, API 최적화를 통해 <b>유스케이스별 트래픽 최대 80% 감소</b></li>
+            <li>PoC 단계 레거시 코드를 <b>Clean Architecture + Bloc 기반으로 재설계</b>하여 UI·비즈니스 로직·데이터 계층을 분리하고, 기능 추가와 테스트가 쉬운 구조 마련</li>
+            <li>Firebase Crashlytics 기반 <b>통합 에러 모니터링 체계</b> 구축</li>
+            <li>DevTools 네트워크 분석을 통해 중복 호출 API를 최적화하여<br><b>유스케이스별 트래픽 최대 80% 감소</b></li>
           </ul>
           <ul class="bullets en">
-            <li>Rebuilt PoC stage legacy code around <b>Clean Architecture + Bloc</b> and set up unified error monitoring on Firebase Crashlytics</li>
-            <li>Identified duplicated data sync logic through DevTools network analysis and optimized the API layer, <b>reducing per use case traffic by up to 80%</b></li>
+            <li>Redesigned PoC stage legacy code around <b>Clean Architecture + Bloc</b>, separating the UI, business logic, and data layers into a structure that is easy to extend and test</li>
+            <li>Set up <b>unified error monitoring</b> on Firebase Crashlytics</li>
+            <li>Optimized duplicated API calls through DevTools network analysis,<br><b>reducing per use case traffic by up to 80%</b></li>
           </ul>
         </div>
 
@@ -552,14 +567,14 @@
           <ul class="bullets ko">
             <li><b>Material·Cupertino UI 독립 패키지 분리</b>에 기여했습니다.
               <ul class="bullets">
-                <li>Flutter 공식 패키지 material_ui, cupertino_ui의 다국어 지원(Localization) 관련 문서 구조를 개선 및 변경했습니다. (<a href="https://github.com/flutter/packages/pull/13109" target="_blank" rel="noopener">PR #13109</a>)</li>
+                <li>Material·Cupertino UI 패키지의 Localization 생성 문서를 공통화하고, 오래된 문서 및 스크립트 참조 경로를 수정했습니다. (<a href="https://github.com/flutter/packages/pull/13109" target="_blank" rel="noopener">PR #13109</a>)</li>
               </ul>
             </li>
           </ul>
           <ul class="bullets en">
             <li>Contributed to <b>splitting Material and Cupertino UI into standalone packages</b>.
               <ul class="bullets">
-                <li>Restructured and updated the localization documentation of the official Flutter packages material_ui and cupertino_ui. (<a href="https://github.com/flutter/packages/pull/13109" target="_blank" rel="noopener">PR #13109</a>)</li>
+                <li>Unified the localization generation docs for the Material and Cupertino UI packages and fixed outdated docs and script reference paths. (<a href="https://github.com/flutter/packages/pull/13109" target="_blank" rel="noopener">PR #13109</a>)</li>
               </ul>
             </li>
           </ul>
